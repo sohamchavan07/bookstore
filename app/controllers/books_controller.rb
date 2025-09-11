@@ -1,37 +1,56 @@
-module Api
-  module V1
-    class BooksController < ApplicationController
-      # GET /api/v1/books
-      def index
-        books = Book.all
-        render json: BookSerializer.new(books).serializable_hash, status: :ok
-      end
+class BooksController < ApplicationController
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
 
-      # GET /api/v1/books/:id
-      def show
-        book = Book.find_by(id: params[:id])
-        if book
-          render json: BookSerializer.new(book).serializable_hash, status: :ok
-        else
-          render json: { error: "Book not found" }, status: :not_found
-        end
-      end
+  # GET /books
+  def index
+    @books = Book.all
+  end
 
-      # POST /api/v1/books
-      def create
-        book = Book.new(book_params)
-        if book.save
-          render json: BookSerializer.new(book).serializable_hash, status: :created
-        else
-          render json: { errors: book.errors.full_messages }, status: :unprocessable_entity
-        end
-      end
+  # GET /books/1
+  def show
+  end
 
-      private
+  # GET /books/new
+  def new
+    @book = Book.new
+  end
 
-      def book_params
-        params.require(:book).permit(:title, :author, :price, :category_id)
-      end
+  # GET /books/1/edit
+  def edit
+  end
+
+  # POST /books
+  def create
+    @book = Book.new(book_params)
+    if @book.save
+      redirect_to @book, notice: 'Book was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  # PATCH/PUT /books/1
+  def update
+    if @book.update(book_params)
+      redirect_to @book, notice: 'Book was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /books/1
+  def destroy
+    @book.destroy
+    redirect_to books_url, notice: 'Book was successfully destroyed.'
+  end
+
+  private
+
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  def book_params
+    params.require(:book).permit(:title, :author, :price, :category_id)
   end
 end

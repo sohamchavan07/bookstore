@@ -1,0 +1,11 @@
+<h1>Welcome to Bookstore</h1>
+<p class="mb-4">Browse our collection or manage your books.</p>
+
+<p>
+  <%= link_to "View Books", books_path, class: "btn-show" %>
+  <%= link_to "Add New Book", new_book_path, class: "btn-new" %>
+  <%= link_to "API: /api/v1/books", api_v1_books_path, class: "btn-edit" %>
+  <%= link_to "Sidekiq Dashboard", "/sidekiq", class: "btn-edit" %>
+  
+  <%# Quick counts if @books is present in future %>
+</p>
