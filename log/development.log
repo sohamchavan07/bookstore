@@ -11717,3 +11717,17 @@ Started GET "/favicon.ico" for ::1 at 2026-04-22 19:02:36 +0530
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Started GET "/" for ::1 at 2026-04-22 19:15:22 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BookStore'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | GC: 0.4ms)
+Completed 200 OK in 37ms (Views: 6.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-04-22 19:15:22 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
