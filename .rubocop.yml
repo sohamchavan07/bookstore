@@ -1,0 +1,24 @@
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
+
+plugins:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  Enabled: false
+
+Layout/LineLength:
+  Exclude:
+    - "config/initializers/devise.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "db/schema.rb"
+    - "db/queue_schema.rb"
+    - "spec/**/*"

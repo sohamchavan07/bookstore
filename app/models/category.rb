@@ -1,5 +1,5 @@
-class Category < ApplicationRecord
+# frozen_string_literal: true
 
- has_many :books, dependent: :destroy
-      
+class Category < ApplicationRecord
+  has_many :books, dependent: :destroy
 end

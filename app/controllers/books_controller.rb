@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:new, :edit, :create, :update]
+  before_action :set_book, only: %i[show edit update destroy]
+  before_action :set_categories, only: %i[new edit create update]
 
   # GET /books
   def index
@@ -8,8 +10,7 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1
-  def show
-  end
+  def show; end
 
   # GET /books/new
   def new
@@ -17,8 +18,7 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /books
   def create

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Book < ApplicationRecord
-     # Validations
+  # Validations
   validates :title,  presence: true
   validates :author, presence: true
   validates :price,  numericality: { greater_than: 0 }
