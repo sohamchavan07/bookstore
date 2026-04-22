@@ -1,0 +1,6 @@
+.env
+.env.*
+
+# Rails local secrets
+/config/master.key
+/config/credentials/*.key
