@@ -20,10 +20,16 @@ This log tracks the journey of preparing this Rails 8 application for deployment
     *   Updated `config/database.yml` to use `DATABASE_URL` and simplified it so that `primary`, `cache`, `queue`, and `cable` all share the same PostgreSQL instance (Render Free Tier only provides one database).
     *   Updated `Dockerfile` to install `libpq-dev` and `postgresql-client`.
 
-### 2. The "Devise" Production Error
-*   **The Mistake:** Placing the `devise` gem inside the `group :development, :test` block.
-*   **The Problem:** Docker builds for production use `BUNDLE_WITHOUT="development"`. When the build tried to precompile assets, it failed with `NameError: uninitialized constant Devise` because the gem wasn't installed.
-*   **The Fix:** Moved `gem "devise"` to the top-level global scope in the `Gemfile` so it is available in all environments.
+### 2. The Gem Grouping Error (Devise, FastJsonapi, Sidekiq)
+*   **The Mistake:** Placing gems like `devise` and `fast_jsonapi` inside the `group :development, :test` block, and leaving a `require 'sidekiq/web'` in `routes.rb` when Sidekiq wasn't installed in production.
+*   **The Problem:** 
+    *   Docker builds for production use `BUNDLE_WITHOUT="development"`. 
+    *   If `devise` is missing, asset precompilation fails.
+    *   If `fast_jsonapi` is missing, the server crashes when trying to load serializers.
+    *   If `routes.rb` requires a missing gem (Sidekiq), the server fails to start entirely (causing the **502 Connection Refused** error on Render).
+*   **The Fix:** 
+    *   Moved `devise` and `fast_jsonapi` to the global scope.
+    *   Cleaned up `routes.rb` to remove requirements for gems not used in production (Sidekiq).
 
 ### 3. CSS & Tailwind Integration
 *   **The Mistake:** Having two competing CSS files (`application.css` and `tailwind/application.css`) and a layout pointing to a missing asset name.
