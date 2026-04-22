@@ -1,15 +1,30 @@
-<div class="book-card">
-  <h2 class="book-title"><%= @book.title %></h2>
-  <div class="book-author">by <%= @book.author %></div>
-  <div class="book-price">₹<%= number_with_precision(@book.price, precision: 2) %></div>
-  <p><em>Published: <%= @book.published_on %></em></p>
-  <p><strong>Details:</strong> <%= @book.formatted_details %></p>
+<div class="container mt-4">
+  <div class="card" style="max-width: 800px; margin: 0 auto;">
+    <div class="header-actions" style="border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; margin-bottom: 1rem; padding-top: 0;">
+      <h2><%= @book.title %></h2>
+      <span class="book-price">₹<%= number_with_precision(@book.price, precision: 2) %></span>
+    </div>
 
-  <%= link_to "Edit", edit_book_path(@book), class: "btn-edit" %>
-  <%= link_to "Back", books_path, class: "btn-show" %>
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+      <div style="color: var(--text-secondary);">
+        <p class="mb-4"><i class="fa-solid fa-user-pen"></i> <%= @book.author %></p>
+        <p class="mb-4"><i class="fa-regular fa-calendar"></i> <%= @book.published_on %></p>
+        <p class="mb-4"><i class="fa-solid fa-tag"></i> <%= @book.category.try(:name) || "Uncategorized" %></p>
+      </div>
+      
+      <div>
+        <h4 style="margin-bottom: 0.5rem;">Details</h4>
+        <p style="line-height: 1.8;"><%= @book.formatted_details %></p>
+      </div>
+    </div>
+
+    <div class="card-actions" style="margin-top: 2rem; border-top: 1px solid var(--glass-border); padding-top: 1.5rem;">
+      <%= link_to edit_book_path(@book), class: "btn btn-primary" do %>
+        <i class="fa-solid fa-pen"></i> Edit
+      <% end %>
+      <%= link_to books_path, class: "btn btn-outline" do %>
+        <i class="fa-solid fa-arrow-left"></i> Back to Collection
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<p>
-  <strong>Category:</strong>
-  <%= book.category.name if book.category %>
-</p>

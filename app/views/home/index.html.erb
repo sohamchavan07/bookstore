@@ -1,11 +1,56 @@
-<h1>Welcome to Bookstore</h1>
-<p class="mb-4">Browse our collection or manage your books.</p>
+<section class="hero hero-home">
+  <div class="container hero-layout">
+    <div class="hero-copy">
+      <span class="hero-kicker">Modern Library Experience</span>
+      <h1>Manage your book collection with speed and clarity.</h1>
+      <p>
+        Discover titles, track your inventory, and keep your reading catalog organized in a clean,
+        distraction-free workspace built for book lovers and teams.
+      </p>
 
-<p>
-  <%= link_to "View Books", books_path, class: "btn-show" %>
-  <%= link_to "Add New Book", new_book_path, class: "btn-new" %>
-  <%= link_to "API: /api/v1/books", api_v1_books_path, class: "btn-edit" %>
-  <%= link_to "Sidekiq Dashboard", "/sidekiq", class: "btn-edit" %>
-  
-  <%# Quick counts if @books is present in future %>
-</p>
+      <div class="hero-actions">
+        <%= link_to books_path, class: "btn btn-primary" do %>
+          <i class="fa-solid fa-book"></i> Browse Collection
+        <% end %>
+
+        <%= link_to new_book_path, class: "btn btn-outline" do %>
+          <i class="fa-solid fa-plus"></i> Add Book
+        <% end %>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <h3>What you can do</h3>
+      <ul>
+        <li><i class="fa-solid fa-check"></i> Maintain a neat digital shelf</li>
+        <li><i class="fa-solid fa-check"></i> Manage metadata and pricing in seconds</li>
+        <li><i class="fa-solid fa-check"></i> Connect using a clean REST API</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="container landing-features">
+  <div class="card-grid">
+    <article class="card feature-card">
+      <i class="fa-solid fa-layer-group fa-2x feature-icon feature-icon-primary"></i>
+      <h3>Extensive Library</h3>
+      <p>Search, browse, and organize your books in a polished and readable interface.</p>
+      <%= link_to "View Books", books_path, class: "feature-link" %>
+    </article>
+
+    <article class="card feature-card">
+      <i class="fa-solid fa-code fa-2x feature-icon feature-icon-accent"></i>
+      <h3>Developer API</h3>
+      <p>Integrate your tools with the BookStore API for automation and custom workflows.</p>
+      <%= link_to "Explore API", api_v1_books_path, class: "feature-link" %>
+    </article>
+
+    <article class="card feature-card">
+      <i class="fa-solid fa-gauge-high fa-2x feature-icon feature-icon-warning"></i>
+      <h3>System Status</h3>
+      <p>Keep an eye on background jobs and performance from your Sidekiq dashboard.</p>
+      <%= link_to "Open Dashboard", dashboard_path, class: "feature-link" %>
+    </article>
+  </div>
+</section>

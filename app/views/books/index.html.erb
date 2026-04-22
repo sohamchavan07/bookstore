@@ -1,17 +1,46 @@
-<h1>All Books</h1>
-
-<% @books.each do |book| %>
-  <div class="book-card">
-    <div class="book-title"><%= book.title %></div>
-    <div class="book-author">by <%= book.author %></div>
-    <div class="book-price">₹<%= number_with_precision(book.price, precision: 2) %></div>
-    <p class="mb-2"><em>Published: <%= book.published_on %></em></p>
-    <p><strong>Details:</strong> <%= book.formatted_details %></p>
-
-    <%= link_to "Show", book, class: "btn-show" %>
-    <%= link_to "Edit", edit_book_path(book), class: "btn-edit" %>
-    <%= link_to "Destroy", book, class: "btn-destroy", data: { confirm: "Are you sure?" }, method: :delete %>
+<div class="container">
+  <div class="header-actions">
+    <h1>Library Collection</h1>
+    <%= link_to new_book_path, class: "btn btn-primary" do %>
+      <i class="fa-solid fa-plus"></i> Add New Book
+    <% end %>
   </div>
-<% end %>
 
-<%= link_to "➕ Add New Book", new_book_path, class: "btn-new" %>
+  <div class="card-grid">
+    <% @books.each do |book| %>
+      <div class="card">
+        <h3><%= book.title %></h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          <i class="fa-solid fa-user-pen"></i> <%= book.author %>
+        </p>
+        
+        <div class="book-meta">
+          <span class="book-price">₹<%= number_with_precision(book.price, precision: 2) %></span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);"><%= book.published_on&.year %></span>
+        </div>
+        
+        <p class="mt-4" style="font-size: 0.95rem;">
+          <%= truncate(book.formatted_details, length: 100) %>
+        </p>
+
+        <div class="card-actions">
+          <%= link_to book, class: "btn btn-sm btn-outline", title: "View Details" do %>
+            <i class="fa-regular fa-eye"></i> Show
+          <% end %>
+          <%= link_to edit_book_path(book), class: "btn btn-sm btn-ghost", title: "Edit Book" do %>
+            <i class="fa-solid fa-pen"></i>
+          <% end %>
+          <%= link_to book, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-ghost", style: "color: var(--error);", title: "Delete" do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <% if @books.empty? %>
+    <div class="text-center mt-4">
+      <p style="color: var(--text-muted);">No books found in the library.</p>
+    </div>
+  <% end %>
+</div>

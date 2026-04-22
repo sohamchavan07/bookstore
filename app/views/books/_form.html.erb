@@ -1,8 +1,7 @@
 <%= form_with(model: book) do |form| %>
   <% if book.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
-
+    <div class="book-form-errors">
+      <h2><%= pluralize(book.errors.count, "error") %> prevented this book from being saved:</h2>
       <ul>
         <% book.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,32 +10,37 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="book-form-grid">
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title, placeholder: "Atomic Habits" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :author %>
+      <%= form.text_field :author, placeholder: "James Clear" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :price %>
+      <%= form.number_field :price, step: 0.01, min: 0, placeholder: "499.00" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :category_id, "Category" %>
+      <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Select a Category" }, { class: "book-select", disabled: @categories.empty? } %>
+      <% if @categories.empty? %>
+        <small style="color: var(--text-muted);">No categories available yet. Add categories first.</small>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= form.label :published_on %>
+      <%= form.date_field :published_on %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :author, style: "display: block" %>
-    <%= form.text_field :author %>
-  </div>
-
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category_id, "Category" %>
-    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Select a Category" %>
-  </div>
-
-  <div>
-    <%= form.label :published_on, style: "display: block" %>
-    <%= form.date_field :published_on %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="book-form-actions">
+    <%= form.submit "Save Book", class: "btn btn-primary" %>
   </div>
 <% end %>

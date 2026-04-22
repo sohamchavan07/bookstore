@@ -1,0 +1,50 @@
+<section class="hero hero-home">
+  <div class="container hero-layout">
+    <div class="hero-copy">
+      <span class="hero-kicker">Overview</span>
+      <h1>Dashboard</h1>
+      <p>Track your catalog at a glance and jump to the most common actions.</p>
+
+      <div class="hero-actions">
+        <%= link_to books_path, class: "btn btn-primary" do %>
+          <i class="fa-solid fa-book"></i> Browse Collection
+        <% end %>
+
+        <%= link_to new_book_path, class: "btn btn-outline" do %>
+          <i class="fa-solid fa-plus"></i> Add Book
+        <% end %>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <h3>Library Snapshot</h3>
+      <ul>
+        <li><i class="fa-solid fa-check"></i> Total books: <strong><%= @book_count %></strong></li>
+        <li><i class="fa-solid fa-check"></i> API endpoint: <code>/api/v1/books</code></li>
+        <li><i class="fa-solid fa-check"></i> Worker monitor: <%= link_to "Sidekiq", "/sidekiq", class: "feature-link" %></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="container landing-features">
+  <h2>Recently Added</h2>
+
+  <% if @latest_books.any? %>
+    <div class="card-grid">
+      <% @latest_books.each do |book| %>
+        <article class="card feature-card">
+          <h3><%= book.title %></h3>
+          <p><strong>Author:</strong> <%= book.author %></p>
+          <%= link_to "View Details", book_path(book), class: "feature-link" %>
+        </article>
+      <% end %>
+    </div>
+  <% else %>
+    <article class="card feature-card">
+      <h3>No books yet</h3>
+      <p>Your dashboard is ready. Add your first book to get started.</p>
+      <%= link_to "Add Book", new_book_path, class: "feature-link" %>
+    </article>
+  <% end %>
+</section>

@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:new, :edit, :create, :update]
 
   # GET /books
   def index
@@ -51,6 +52,10 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :price, :category_id)
+    params.require(:book).permit(:title, :author, :price, :published_on, :category_id)
+  end
+
+  def set_categories
+    @categories = Category.order(:name)
   end
 end

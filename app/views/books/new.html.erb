@@ -1,11 +1,18 @@
 <% content_for :title, "New book" %>
 
-<h1>New book</h1>
+<section class="book-form-shell">
+  <div class="book-form-card">
+    <div class="book-form-header">
+      <h1>Add a New Book</h1>
+      <p>Fill in the details below to add a title to your collection.</p>
+    </div>
 
-<%= render "form", book: @book %>
+    <%= render "form", book: @book %>
 
-<br>
-
-<div>
-  <%= link_to "Back to books", books_path %>
-</div>
+    <div class="book-form-footer">
+      <%= link_to books_path, class: "btn btn-ghost" do %>
+        <i class="fa-solid fa-arrow-left"></i> Back to Books
+      <% end %>
+    </div>
+  </div>
+</section>

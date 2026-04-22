@@ -1,0 +1,44 @@
+<section class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Welcome back</h1>
+      <p>Sign in to continue managing your book collection.</p>
+    </div>
+
+    <% if resource.errors.any? %>
+      <div class="auth-errors">
+        <% resource.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "auth-form" }) do |f| %>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "you@example.com" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Enter your password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field field-inline">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <%= f.submit "Sign In", class: "btn btn-primary auth-submit" %>
+    <% end %>
+
+    <div class="auth-links">
+      <%= link_to "Create an account", new_registration_path(resource_name) %>
+      <% if devise_mapping.recoverable? %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+      <% end %>
+    </div>
+  </div>
+</section>
