@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< Updated upstream
 <html lang="en">
+=======
+<html class="h-full bg-gray-50">
+>>>>>>> Stashed changes
   <head>
     <title>BookStore | Premium Collection</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +13,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<<<<<<< Updated upstream
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
@@ -50,7 +55,78 @@
     <footer class="footer">
       <div class="container">
         <p>&copy; <%= Time.now.year %> BookStore. Crafted with ❤️.</p>
+=======
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="h-full flex flex-col font-sans text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
+    
+    <!-- Navigation -->
+    <nav class="glass-nav">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <div class="flex-shrink-0 flex items-center">
+              <%= link_to root_path, class: "flex items-center gap-2 group" do %>
+                <span class="text-2xl pt-1 transition-transform group-hover:scale-110">📚</span>
+                <span class="font-bold text-xl tracking-tight text-slate-900 group-hover:text-indigo-600 transition-colors">BookStore</span>
+              <% end %>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <% if user_signed_in? %>
+              <span class="text-sm text-slate-500 hidden sm:block">Welcome, <span class="font-semibold text-slate-700"><%= current_user.email %></span></span>
+              <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete }, class: "text-sm font-medium text-slate-600 hover:text-red-600 transition-colors px-3 py-2 rounded-lg hover:bg-red-50" %>
+            <% else %>
+              <%= link_to 'Login', new_user_session_path, class: "text-sm font-medium text-slate-600 hover:text-indigo-600 px-3 py-2 transition-colors" %>
+              <%= link_to 'Sign up', new_user_registration_path, class: "text-sm font-medium bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+      <% if notice %>
+        <div class="bg-indigo-50 border-l-4 border-indigo-500 text-indigo-700 p-4 rounded-r shadow-sm animate-fade-in" role="alert">
+          <p><%= notice %></p>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r shadow-sm animate-fade-in" role="alert">
+          <p><%= alert %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto">
+      <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <p class="text-slate-400 text-sm">
+            &copy; <%= Time.current.year %> BookStore. Crafted with <span class="text-red-400">♥</span> for readers.
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-slate-400 hover:text-slate-500 transition-colors">
+              <span class="sr-only">GitHub</span>
+              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+>>>>>>> Stashed changes
       </div>
     </footer>
   </body>
 </html>
+
