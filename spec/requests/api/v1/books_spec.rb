@@ -65,7 +65,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
     it 'returns errors if validation fails' do
       post '/api/v1/books', params: { book: { title: '' } }
       expect(response).to have_http_status(:unprocessable_content).or have_http_status(422)
-      # NOTE: RSpec/warnings about :unprocessable_entity deprecation — 422 numeric is safe
+      # NOTE: Replaced :unprocessable_entity with :unprocessable_content to fix deprecation warning.
     end
   end
 end

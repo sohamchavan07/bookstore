@@ -31,7 +31,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -40,7 +40,7 @@ class BooksController < ApplicationController
     if @book.update(book_params)
       redirect_to @book, notice: 'Book was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

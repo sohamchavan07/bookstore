@@ -21,7 +21,7 @@ module Api
         if book.save
           render json: BookSerializer.new(book).serializable_hash, status: :created
         else
-          render json: { errors: book.errors.full_messages }, status: :unprocessable_entity
+          render json: { errors: book.errors.full_messages }, status: :unprocessable_content
         end
       end
 

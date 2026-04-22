@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "Book Search and Filter", type: :system do
   before do
     driven_by(:rack_test)
-    @fiction = create(:category, name: "Fiction")
-    @science = create(:category, name: "Science")
+    @fiction = Category.find_or_create_by!(name: "Fiction")
+    @science = Category.find_or_create_by!(name: "Science")
 
     @book1 = create(:book, title: "The Great Gatsby", author: "F. Scott Fitzgerald", category: @fiction)
     @book2 = create(:book, title: "A Brief History of Time", author: "Stephen Hawking", category: @science)
