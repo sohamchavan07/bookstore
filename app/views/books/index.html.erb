@@ -1,25 +1,42 @@
 <div class="container">
-  <div class="header-actions">
-    <h1>Library Collection</h1>
+  <div class="books-page-header">
+    <div>
+      <span class="section-kicker">Collection</span>
+      <h1>Library Collection</h1>
+      <p class="section-subtext">
+        Browse, manage, and curate your catalog from a single place.
+      </p>
+    </div>
     <%= link_to new_book_path, class: "btn btn-primary" do %>
       <i class="fa-solid fa-plus"></i> Add New Book
     <% end %>
   </div>
 
-  <div class="card-grid">
+  <div class="book-stats-strip">
+    <article class="stat-chip">
+      <span class="stat-chip-label">Books in catalog</span>
+      <strong><%= @books.count %></strong>
+    </article>
+    <article class="stat-chip">
+      <span class="stat-chip-label">Latest publish year</span>
+      <strong><%= @books.map(&:published_on).compact.max&.year || "N/A" %></strong>
+    </article>
+  </div>
+
+  <div class="card-grid book-card-grid">
     <% @books.each do |book| %>
-      <div class="card">
-        <h3><%= book.title %></h3>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
+      <article class="card">
+        <h3 class="book-card-title"><%= book.title %></h3>
+        <p class="book-card-author">
           <i class="fa-solid fa-user-pen"></i> <%= book.author %>
         </p>
         
         <div class="book-meta">
           <span class="book-price">₹<%= number_with_precision(book.price, precision: 2) %></span>
-          <span style="font-size: 0.8rem; color: var(--text-muted);"><%= book.published_on&.year %></span>
+          <span class="book-card-year"><%= book.published_on&.year || "—" %></span>
         </div>
         
-        <p class="mt-4" style="font-size: 0.95rem;">
+        <p class="book-card-summary">
           <%= truncate(book.formatted_details, length: 100) %>
         </p>
 
@@ -34,7 +51,7 @@
             <i class="fa-solid fa-trash"></i>
           <% end %>
         </div>
-      </div>
+      </article>
     <% end %>
   </div>
   

@@ -1,12 +1,22 @@
-<% content_for :title, "Editing book" %>
+<% content_for :title, "Edit book" %>
 
-<h1>Editing book</h1>
+<section class="book-form-shell">
+  <div class="book-form-card">
+    <div class="book-form-header">
+      <span class="book-form-badge">Edit mode</span>
+      <h1>Update "<%= @book.title %>"</h1>
+      <p>Refine metadata, pricing, and publication details without losing history.</p>
+    </div>
 
-<%= render "form", book: @book %>
+    <%= render "form", book: @book %>
 
-<br>
-
-<div>
-  <%= link_to "Show this book", @book %> |
-  <%= link_to "Back to books", books_path %>
-</div>
+    <div class="book-form-footer">
+      <%= link_to @book, class: "btn btn-outline" do %>
+        <i class="fa-regular fa-eye"></i> View Book
+      <% end %>
+      <%= link_to books_path, class: "btn btn-ghost" do %>
+        <i class="fa-solid fa-arrow-left"></i> Back to Books
+      <% end %>
+    </div>
+  </div>
+</section>
