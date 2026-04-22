@@ -11745,3 +11745,625 @@ Started GET "/favicon.ico" for ::1 at 2026-04-22 19:28:58 +0530
   
 ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
   
+Started GET "/books" for ::1 at 2026-04-22 19:36:33 +0530
+Processing by BooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Count (9.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:18
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:22:in `map'
+  Rendered books/index.html.erb within layouts/application (Duration: 24.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 25.1ms | GC: 0.0ms)
+Completed 200 OK in 42ms (Views: 1.7ms | ActiveRecord: 23.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-04-22 19:36:33 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/books/1" for ::1 at 2026-04-22 19:36:34 +0530
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = 1 LIMIT 1 /*action='show',application='BookStore',controller='books'*/[0m
+  ↳ app/controllers/books_controller.rb:51:in `set_book'
+  Rendering layout layouts/application.html.erb
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 9 LIMIT 1 /*action='show',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/show.html.erb:15
+  Rendered books/show.html.erb within layouts/application (Duration: 7.5ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | GC: 0.3ms)
+Completed 200 OK in 31ms (Views: 5.7ms | ActiveRecord: 2.9ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/books" for ::1 at 2026-04-22 19:36:35 +0530
+Processing by BooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:18
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:22:in `map'
+  Rendered books/index.html.erb within layouts/application (Duration: 1.6ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.2ms)
+Completed 200 OK in 21ms (Views: 2.4ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-04-22 19:36:36 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.4ms | GC: 0.0ms)
+Completed 200 OK in 27ms (Views: 3.1ms | ActiveRecord: 2.8ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2026-04-22 19:36:37 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.1ms)
+Completed 200 OK in 20ms (Views: 1.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:36:38 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.6ms | GC: 0.0ms)
+Completed 200 OK in 19ms (Views: 0.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:47:20 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.8ms | GC: 0.1ms)
+Completed 200 OK in 20ms (Views: 0.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-04-22 19:47:21 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/users/sign_in" for ::1 at 2026-04-22 19:47:23 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.5ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.1ms | GC: 0.4ms)
+Completed 200 OK in 29ms (Views: 2.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2026-04-22 19:47:23 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 1.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-04-22 19:47:25 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.0ms)
+Completed 200 OK in 31ms (Views: 1.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.7ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:47:26 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 2.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:49:50 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BookStore'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | GC: 0.4ms)
+Completed 200 OK in 30ms (Views: 4.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-04-22 19:49:51 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2026-04-22 19:51:38 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.9ms)
+Completed 200 OK in 17ms (Views: 2.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.7ms)
+
+
+Started GET "/assets/tailwind-481d8ed2.css" for ::1 at 2026-04-22 19:51:38 +0530
+Started GET "/favicon.ico" for ::1 at 2026-04-22 19:51:38 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/books" for ::1 at 2026-04-22 19:51:44 +0530
+Processing by BooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Count (10.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:18
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:22:in `map'
+  Rendered books/index.html.erb within layouts/application (Duration: 20.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 20.7ms | GC: 0.0ms)
+Completed 200 OK in 39ms (Views: 1.1ms | ActiveRecord: 19.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/books" for ::1 at 2026-04-22 19:51:46 +0530
+Processing by Api::V1::BooksController#index as HTML
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/controllers/api/v1/books_controller.rb:9:in `index'
+Completed 200 OK in 29ms (Views: 0.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/dashboard" for ::1 at 2026-04-22 19:51:50 +0530
+Processing by HomeController#dashboard as HTML
+  [1m[36mBook Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*action='dashboard',application='BookStore',controller='home'*/[0m
+  ↳ app/controllers/home_controller.rb:7:in `dashboard'
+  Rendering layout layouts/application.html.erb
+  Rendering home/dashboard.html.erb within layouts/application
+  [1m[36mBook Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "books" LIMIT 1 /*action='dashboard',application='BookStore',controller='home'*/[0m
+  ↳ app/views/home/dashboard.html.erb:33
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" ORDER BY "books"."created_at" DESC LIMIT 5 /*action='dashboard',application='BookStore',controller='home'*/[0m
+  ↳ app/views/home/dashboard.html.erb:35
+  Rendered home/dashboard.html.erb within layouts/application (Duration: 2.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | GC: 0.0ms)
+Completed 200 OK in 32ms (Views: 2.8ms | ActiveRecord: 1.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/books" for ::1 at 2026-04-22 19:51:53 +0530
+Processing by BooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:18
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:22:in `map'
+  Rendered books/index.html.erb within layouts/application (Duration: 2.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | GC: 0.0ms)
+Completed 200 OK in 32ms (Views: 3.2ms | ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:51:55 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 27ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:52:06 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='BookStore'*/[0m
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | GC: 0.5ms)
+Completed 200 OK in 34ms (Views: 5.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.8ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-04-22 19:52:07 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2026-04-22 19:53:14 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 2.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-04-22 19:53:17 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | GC: 0.1ms)
+Completed 200 OK in 47ms (Views: 5.5ms | ActiveRecord: 11.4ms (0 queries, 0 cached) | GC: 2.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-04-22 19:53:17 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/users/sign_up" for ::1 at 2026-04-22 19:53:20 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 1.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 2.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-04-22 19:53:22 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/books" for ::1 at 2026-04-22 19:53:23 +0530
+Processing by BooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:18
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:22:in `map'
+  Rendered books/index.html.erb within layouts/application (Duration: 10.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | GC: 0.0ms)
+Completed 200 OK in 44ms (Views: 7.8ms | ActiveRecord: 4.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/books/1" for ::1 at 2026-04-22 19:53:25 +0530
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = 1 LIMIT 1 /*action='show',application='BookStore',controller='books'*/[0m
+  ↳ app/controllers/books_controller.rb:51:in `set_book'
+  Rendering layout layouts/application.html.erb
+  Rendering books/show.html.erb within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 9 LIMIT 1 /*action='show',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/show.html.erb:15
+  Rendered books/show.html.erb within layouts/application (Duration: 10.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | GC: 0.0ms)
+Completed 200 OK in 33ms (Views: 7.3ms | ActiveRecord: 4.4ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:53:26 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.0ms)
+Completed 200 OK in 29ms (Views: 1.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/books/new" for ::1 at 2026-04-22 19:53:29 +0530
+Processing by BooksController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering books/new.html.erb within layouts/application
+  [1m[36mCategory Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" LIMIT 1 /*action='new',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/_form.html.erb:31
+  [1m[36mCategory Load (2.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC /*action='new',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/_form.html.erb:31
+  Rendered books/_form.html.erb (Duration: 8.2ms | GC: 0.4ms)
+  Rendered books/new.html.erb within layouts/application (Duration: 9.1ms | GC: 0.4ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.7ms | GC: 1.5ms)
+Completed 200 OK in 44ms (Views: 8.1ms | ActiveRecord: 2.9ms (2 queries, 0 cached) | GC: 5.7ms)
+
+
+Started GET "/books/new" for ::1 at 2026-04-22 19:54:52 +0530
+Processing by BooksController#new as HTML
+Completed 401 Unauthorized in 16ms (ActiveRecord: 1.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-04-22 19:54:52 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 0.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.7ms | GC: 0.2ms)
+Completed 200 OK in 19ms (Views: 2.8ms | ActiveRecord: 2.1ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-04-22 19:54:53 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2026-04-22 19:54:55 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 2.0ms)
+Completed 200 OK in 32ms (Views: 4.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 2.0ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2026-04-22 19:54:57 +0530
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.9ms | GC: 1.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | GC: 1.3ms)
+Completed 200 OK in 33ms (Views: 4.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 1.3ms)
+
+
+Started POST "/users" for ::1 at 2026-04-22 19:55:06 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='BookStore',controller='registrations'*/[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'soham777chavan777@gmail.com' LIMIT 1 /*action='create',application='BookStore',controller='registrations'*/[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[31mROLLBACK /*action='create',application='BookStore',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 0.7ms | GC: 0.1ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.1ms | GC: 0.1ms)
+Completed 422 Unprocessable Content in 237ms (Views: 1.3ms | ActiveRecord: 2.9ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/users" for ::1 at 2026-04-22 19:55:20 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='BookStore',controller='registrations'*/[0m
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'sohamchavan.sc07@gmail.com' LIMIT 1 /*action='create',application='BookStore',controller='registrations'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK /*action='create',application='BookStore',controller='registrations'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 1.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.6ms | GC: 0.1ms)
+Completed 422 Unprocessable Content in 221ms (Views: 1.7ms | ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.3ms)
+
+
+Started POST "/users" for ::1 at 2026-04-22 19:55:44 +0530
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create Account"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='BookStore',controller='registrations'*/[0m
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'soham.sc@gmail.com' LIMIT 1 /*action='create',application='BookStore',controller='registrations'*/[0m
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ('soham.sc@gmail.com', '$2a$12$4pkRcO2JrcR.KBX0DgbO1.pHlAdXqBlXz6gNqHr8LaT1ELVMcdcqe', NULL, NULL, NULL, '2026-04-22 14:25:44.395857', '2026-04-22 14:25:44.395857') RETURNING "id" /*action='create',application='BookStore',controller='registrations'*/[0m
+[ActiveJob] Enqueued WelcomeEmailJob (Job ID: a1d926e3-efbb-48bf-a4fa-fb41697fbb06) to Async(default) with arguments: 7
+[ActiveJob] ↳ app/models/user.rb:9:in `send_welcome_email'
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06] Performing WelcomeEmailJob (Job ID: a1d926e3-efbb-48bf-a4fa-fb41697fbb06) from Async(default) enqueued at 2026-04-22T14:25:44.406964000Z with arguments: 7
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT /*action='create',application='BookStore',controller='registrations'*/[0m
+Redirected to http://[::1]:3000/books/new
+Completed 303 See Other in 233ms (ActiveRecord: 6.0ms (2 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/books/new" for ::1 at 2026-04-22 19:55:44 +0530
+Processing by BooksController#new as HTML
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   [1m[36mUser Load (8.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 7 LIMIT 1 /*application='BookStore',job='WelcomeEmailJob'*/[0m
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   ↳ app/jobs/welcome_email_job.rb:7:in `perform'
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   Rendering layout layouts/mailer.html.erb
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   Rendered user_mailer/welcome_email.html.erb within layouts/mailer (Duration: 0.4ms | GC: 0.0ms)
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   Rendered layout layouts/mailer.html.erb (Duration: 0.5ms | GC: 0.0ms)
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06] UserMailer#welcome_email: processed outbound mail in 2.0ms
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='BookStore',job='WelcomeEmailJob'*/[0m
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   ↳ app/jobs/welcome_email_job.rb:18:in `create_job_log'
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   [1m[36mJobLog Create (0.8ms)[0m  [1m[32mINSERT INTO "job_logs" ("job_name", "status", "executed_at", "message", "created_at", "updated_at") VALUES ('WelcomeEmailJob', 'failed', '2026-04-22 14:25:44.428360', 'undefined method `name'' for #<User id: 7, email: [FILTERED], created_at: "2026-04-22 14:25:44.395857000 +0000", updated_at: "2026-04-22 14:25:44.395857000 +0000">', '2026-04-22 14:25:44.434629', '2026-04-22 14:25:44.434629') RETURNING "id" /*application='BookStore',job='WelcomeEmailJob'*/[0m
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   ↳ app/jobs/welcome_email_job.rb:18:in `create_job_log'
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT /*application='BookStore',job='WelcomeEmailJob'*/[0m
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06]   ↳ app/jobs/welcome_email_job.rb:18:in `create_job_log'
+[ActiveJob] [WelcomeEmailJob] [a1d926e3-efbb-48bf-a4fa-fb41697fbb06] Error performing WelcomeEmailJob (Job ID: a1d926e3-efbb-48bf-a4fa-fb41697fbb06) from Async(default) in 26.7ms: ActionView::Template::Error (undefined method `name' for #<User id: 7, email: [FILTERED], created_at: "2026-04-22 14:25:44.395857000 +0000", updated_at: "2026-04-22 14:25:44.395857000 +0000">):
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activemodel-8.0.2.1/lib/active_model/attribute_methods.rb:512:in `method_missing'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activerecord-8.0.2.1/lib/active_record/attribute_methods.rb:495:in `method_missing'
+/Users/shdc02/soham_workspace/bookstore/app/views/user_mailer/welcome_email.html.erb:1:in `_app_views_user_mailer_welcome_email_html_erb___2506282144206931332_52620'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/base.rb:278:in `public_send'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/base.rb:278:in `_run'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/template.rb:284:in `block in render'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:212:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/template.rb:583:in `instrument_render_template'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/template.rb:272:in `render'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/renderer/template_renderer.rb:66:in `block (2 levels) in render_template'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/renderer/template_renderer.rb:60:in `block in render_template'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/renderer/template_renderer.rb:76:in `block in render_with_layout'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/renderer/template_renderer.rb:75:in `render_with_layout'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/renderer/template_renderer.rb:59:in `render_template'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/renderer/template_renderer.rb:11:in `render'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/renderer/renderer.rb:58:in `render_template_to_object'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/renderer/renderer.rb:31:in `render_to_object'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/rendering.rb:136:in `block in _render_template'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/base.rb:305:in `in_rendering_context'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/rendering.rb:135:in `_render_template'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/rendering.rb:122:in `render_to_body'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionpack-8.0.2.1/lib/abstract_controller/rendering.rb:28:in `render'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:998:in `block in collect_responses_from_templates'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:995:in `each'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:995:in `each'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:995:in `map'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:995:in `collect_responses_from_templates'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:973:in `collect_responses'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:881:in `mail'
+/Users/shdc02/soham_workspace/bookstore/app/mailers/user_mailer.rb:8:in `welcome_email'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:226:in `process_action'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:261:in `block in process_action'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:120:in `block in run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actiontext-8.0.2.1/lib/action_text/rendering.rb:25:in `with_renderer'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actiontext-8.0.2.1/lib/action_text/engine.rb:71:in `block (4 levels) in <class:Engine>'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:129:in `instance_exec'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:129:in `block in run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:140:in `run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionpack-8.0.2.1/lib/abstract_controller/callbacks.rb:260:in `process_action'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionpack-8.0.2.1/lib/abstract_controller/base.rb:163:in `process'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/rescuable.rb:29:in `block in process'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/rescuable.rb:21:in `handle_exceptions'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/rescuable.rb:28:in `process'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionview-8.0.2.1/lib/action_view/rendering.rb:40:in `process'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:652:in `block in process'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/base.rb:651:in `process'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/message_delivery.rb:136:in `block in processed_mailer'
+<internal:kernel>:90:in `tap'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/message_delivery.rb:135:in `processed_mailer'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/actionmailer-8.0.2.1/lib/action_mailer/message_delivery.rb:124:in `deliver_now'
+/Users/shdc02/soham_workspace/bookstore/app/jobs/welcome_email_job.rb:8:in `perform'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/execution.rb:68:in `block in _perform_job'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:120:in `block in run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/i18n-1.14.7/lib/i18n.rb:353:in `with_locale'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:129:in `instance_exec'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:129:in `block in run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/core_ext/time/zones.rb:65:in `use_zone'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/timezones.rb:9:in `block (2 levels) in <module:Timezones>'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:129:in `instance_exec'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:129:in `block in run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:140:in `run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/execution.rb:67:in `_perform_job'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/instrumentation.rb:32:in `_perform_job'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/execution.rb:51:in `perform_now'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/instrumentation.rb:26:in `block in perform_now'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activerecord-8.0.2.1/lib/active_record/railties/job_runtime.rb:13:in `block in instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/instrumentation.rb:40:in `block in instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `block in instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications/instrumenter.rb:58:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/notifications.rb:210:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/instrumentation.rb:39:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activerecord-8.0.2.1/lib/active_record/railties/job_runtime.rb:11:in `instrument'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/instrumentation.rb:26:in `perform_now'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/logging.rb:32:in `block in perform_now'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/tagged_logging.rb:143:in `block in tagged'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/tagged_logging.rb:38:in `tagged'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/tagged_logging.rb:143:in `tagged'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/broadcast_logger.rb:241:in `method_missing'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/logging.rb:39:in `tag_logger'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/logging.rb:32:in `perform_now'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/execution.rb:29:in `block in execute'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:120:in `block in run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/railtie.rb:95:in `block (4 levels) in <class:Railtie>'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/reloader.rb:77:in `block in wrap'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/execution_wrapper.rb:91:in `wrap'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/reloader.rb:74:in `wrap'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/railtie.rb:94:in `block (3 levels) in <class:Railtie>'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:129:in `instance_exec'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:129:in `block in run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activesupport-8.0.2.1/lib/active_support/callbacks.rb:140:in `run_callbacks'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/execution.rb:27:in `execute'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/activejob-8.0.2.1/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/concurrent-ruby-1.3.5/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:359:in `run_task'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/concurrent-ruby-1.3.5/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:350:in `block (3 levels) in create_worker'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/concurrent-ruby-1.3.5/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `loop'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/concurrent-ruby-1.3.5/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:341:in `block (2 levels) in create_worker'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/concurrent-ruby-1.3.5/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `catch'
+/Users/shdc02/.rvm/gems/ruby-3.2.2/gems/concurrent-ruby-1.3.5/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:340:in `block in create_worker'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 7 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='BookStore',controller='books'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering books/new.html.erb within layouts/application
+  [1m[36mCategory Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" LIMIT 1 /*action='new',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/_form.html.erb:31
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC /*action='new',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/_form.html.erb:31
+  Rendered books/_form.html.erb (Duration: 5.2ms | GC: 0.3ms)
+  Rendered books/new.html.erb within layouts/application (Duration: 5.7ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | GC: 0.3ms)
+Completed 200 OK in 36ms (Views: 3.2ms | ActiveRecord: 5.5ms (3 queries, 0 cached) | GC: 3.3ms)
+
+
+Started GET "/users/sign_out" for ::1 at 2026-04-22 19:55:48 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 7 ORDER BY "users"."id" ASC LIMIT 1 /*action='destroy',application='BookStore',controller='sessions'*/[0m
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 27ms (ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:55:48 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 18ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-04-22 19:55:50 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 1.3ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 1.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-04-22 19:56:01 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'soham.sc@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='BookStore',controller='sessions'*/[0m
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 219ms (ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:56:01 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.1ms | GC: 0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 7 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='BookStore',controller='home'*/[0m
+  ↳ app/views/layouts/application.html.erb:30
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | GC: 0.1ms)
+Completed 200 OK in 13ms (Views: 1.3ms | ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/books" for ::1 at 2026-04-22 19:56:03 +0530
+Processing by BooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:18
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:22:in `map'
+  Rendered books/index.html.erb within layouts/application (Duration: 3.0ms | GC: 0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 7 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/layouts/application.html.erb:30
+  Rendered layout layouts/application.html.erb (Duration: 4.5ms | GC: 0.1ms)
+Completed 200 OK in 27ms (Views: 3.2ms | ActiveRecord: 1.5ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/" for ::1 at 2026-04-22 19:56:06 +0530
+Processing by HomeController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.3ms | GC: 0.0ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 7 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='BookStore',controller='home'*/[0m
+  ↳ app/views/layouts/application.html.erb:30
+  Rendered layout layouts/application.html.erb (Duration: 3.1ms | GC: 0.0ms)
+Completed 200 OK in 30ms (Views: 2.7ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/books/new" for ::1 at 2026-04-22 19:56:07 +0530
+Processing by BooksController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 7 ORDER BY "users"."id" ASC LIMIT 1 /*action='new',application='BookStore',controller='books'*/[0m
+  Rendering layout layouts/application.html.erb
+  Rendering books/new.html.erb within layouts/application
+  [1m[36mCategory Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "categories" LIMIT 1 /*action='new',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/_form.html.erb:31
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC /*action='new',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/_form.html.erb:31
+  Rendered books/_form.html.erb (Duration: 3.4ms | GC: 0.3ms)
+  Rendered books/new.html.erb within layouts/application (Duration: 3.7ms | GC: 0.3ms)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | GC: 0.3ms)
+Completed 200 OK in 35ms (Views: 4.3ms | ActiveRecord: 1.1ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/books" for ::1 at 2026-04-22 19:56:09 +0530
+Processing by BooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:18
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/books/index.html.erb:22:in `map'
+  Rendered books/index.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 7 ORDER BY "users"."id" ASC LIMIT 1 /*action='index',application='BookStore',controller='books'*/[0m
+  ↳ app/views/layouts/application.html.erb:30
+  Rendered layout layouts/application.html.erb (Duration: 4.4ms | GC: 0.0ms)
+Completed 200 OK in 33ms (Views: 4.4ms | ActiveRecord: 0.7ms (3 queries, 0 cached) | GC: 0.0ms)
+
+

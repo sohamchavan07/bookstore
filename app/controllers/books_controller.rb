@@ -3,6 +3,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
   before_action :set_categories, only: %i[new edit create update]
+  before_action :authenticate_user!, only: %i[new create]
 
   # GET /books
   def index
