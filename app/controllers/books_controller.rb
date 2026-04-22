@@ -8,6 +8,10 @@ class BooksController < ApplicationController
   # GET /books
   def index
     @books = Book.all
+    @books = @books.search_by_term(params[:query]) if params[:query].present?
+    @books = @books.by_category(params[:category_id]) if params[:category_id].present?
+    
+    @categories = Category.order(:name)
   end
 
   # GET /books/1

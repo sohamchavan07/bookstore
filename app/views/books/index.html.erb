@@ -23,6 +23,30 @@
     </article>
   </div>
 
+  <div class="search-filter-bar mt-4">
+    <%= form_with url: books_path, method: :get, local: true, class: "search-filter-form" do |f| %>
+      <div class="field">
+        <%= f.label :query, "Search by title or author" %>
+        <%= f.text_field :query, value: params[:query], placeholder: "E.g. The Great Gatsby...", autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :category_id, "Filter by Category" %>
+        <%= f.collection_select :category_id, @categories, :id, :name, { include_blank: "All Categories", selected: params[:category_id] } %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Search", class: "btn btn-primary" %>
+      </div>
+
+      <% if params[:query].present? || params[:category_id].present? %>
+        <div class="actions">
+          <%= link_to "Clear", books_path, class: "btn btn-outline" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="card-grid book-card-grid">
     <% @books.each do |book| %>
       <article class="card">
