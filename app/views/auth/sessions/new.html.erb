@@ -1,0 +1,42 @@
+<div class="max-w-md mx-auto my-12 p-8 bg-white rounded-lg shadow-md" 
+     data-controller="supabase-auth"
+     data-supabase-auth-url-value="<%= Supabase.url %>"
+     data-supabase-auth-key-value="<%= Supabase.anon_key %>">
+  
+  <h2 class="text-2xl font-bold mb-6 text-center">Sign In / Sign Up</h2>
+  
+  <p data-supabase-auth-target="message" class="mb-4 text-sm text-center text-indigo-600 font-medium"></p>
+
+  <div data-supabase-auth-target="emailSection">
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+      <input type="email" id="email" data-supabase-auth-target="email" 
+             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" 
+             placeholder="you@example.com">
+    </div>
+    
+    <button data-action="click->supabase-auth#sendOtp" 
+            class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-200">
+      Send OTP Code
+    </button>
+  </div>
+
+  <div data-supabase-auth-target="otpSection" class="hidden">
+    <div class="mb-4">
+      <label for="otp" class="block text-sm font-medium text-gray-700 mb-1">Enter Code</label>
+      <input type="text" id="otp" data-supabase-auth-target="otp" 
+             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" 
+             placeholder="123456">
+    </div>
+    
+    <button data-action="click->supabase-auth#verifyOtp" 
+            class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200">
+      Verify & Sign In
+    </button>
+    
+    <button data-action="click->supabase-auth#sendOtp" 
+            class="w-full mt-4 text-sm text-indigo-600 hover:underline">
+      Resend Code
+    </button>
+  </div>
+</div>

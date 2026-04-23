@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class BooksController < ApplicationController
+    class BooksController < Api::BaseController
       # GET /api/v1/books
       def index
         books = Book.all
