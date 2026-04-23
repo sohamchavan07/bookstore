@@ -1,10 +1,7 @@
-# frozen_string_literal: true
-
 class UserMailer < ApplicationMailer
-  default from: 'no-reply@example.com'
-
-  def welcome_email(user)
+  def otp_email(user)
     @user = user
-    mail(to: @user.email, subject: 'Welcome to Our App!')
+    @otp = user.otp_code
+    mail(to: @user.email, subject: 'Your One-Time Password (OTP) for Bookstore')
   end
 end
