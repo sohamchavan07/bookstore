@@ -1,0 +1,29 @@
+<section class="auth-shell">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Forgot Password?</h1>
+      <p>Enter your email and we'll send you reset instructions</p>
+    </div>
+
+    <% if resource.errors.any? %>
+      <div class="auth-errors">
+        <% resource.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "auth-form" }) do |f| %>
+      <div class="field">
+        <%= f.label :email, "Email Address" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@example.com" %>
+      </div>
+
+      <%= f.submit "Send Reset Link", class: "auth-submit" %>
+    <% end %>
+
+    <div class="auth-links">
+      <p class="text-sm text-slate-500">Wait, I remember now! <%= link_to "Go back to sign in", new_session_path(resource_name) %></p>
+    </div>
+  </div>
+</section>

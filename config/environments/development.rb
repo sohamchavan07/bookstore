@@ -36,8 +36,12 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :resend
+  config.action_mailer.resend_settings = {
+    api_key: ENV['RESEND_API_KEY']
+  }
 
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
