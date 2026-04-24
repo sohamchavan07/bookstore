@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Books', type: :request do
+  let!(:user) { create(:user) }
+  let(:headers) { authenticated_header(user) }
   # create a real category to use in tests
   let!(:category) { create(:category) }
   # create 3 books attached to that category
@@ -23,17 +25,22 @@ RSpec.describe 'Api::V1::Books', type: :request do
 
   describe 'GET /api/v1/books' do
     it 'returns all books' do
-      get '/api/v1/books'
+      get '/api/v1/books', headers: headers
       # debug: puts response.body if you need to inspect JSON
       expect(response).to have_http_status(:ok)
       expect(data.size).to eq(3)
+    end
+
+    it 'returns unauthorized if token is missing' do
+      get '/api/v1/books'
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 
   describe 'GET /api/v1/books/:id' do
     it 'returns a single book' do
       book = books.first
-      get "/api/v1/books/#{book.id}"
+      get "/api/v1/books/#{book.id}", headers: headers
 
       expect(response).to have_http_status(:ok)
       # data here should be a Hash (single resource)
@@ -41,7 +48,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
     end
 
     it 'returns 404 if book not found' do
-      get '/api/v1/books/9999'
+      get '/api/v1/books/9999', headers: headers
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -55,7 +62,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
           price: 199,
           category_id: category.id # <--- use the real category id
         }
-      }
+      }, headers: headers
 
       expect(response).to have_http_status(:created)
       json = parsed_json
@@ -63,7 +70,7 @@ RSpec.describe 'Api::V1::Books', type: :request do
     end
 
     it 'returns errors if validation fails' do
-      post '/api/v1/books', params: { book: { title: '' } }
+      post '/api/v1/books', params: { book: { title: '' } }, headers: headers
       expect(response).to have_http_status(:unprocessable_content).or have_http_status(422)
       # NOTE: Replaced :unprocessable_entity with :unprocessable_content to fix deprecation warning.
     end
