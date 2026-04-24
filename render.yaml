@@ -39,4 +39,4 @@ services:
         value: production
       - key: RESEND_API_KEY
         sync: false
-    command: ./bin/rails solid_queue:start
+    dockerCommand: ./bin/rails solid_queue:start
