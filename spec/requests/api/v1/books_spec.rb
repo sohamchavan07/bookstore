@@ -28,7 +28,9 @@ RSpec.describe 'Api::V1::Books', type: :request do
       get '/api/v1/books', headers: headers
       # debug: puts response.body if you need to inspect JSON
       expect(response).to have_http_status(:ok)
-      expect(data.size).to eq(3)
+      expect(data.size).to eq(Book.count)
+      returned_ids = data.map { |item| item['id'].to_i }
+      expect(returned_ids).to include(*books.map(&:id))
     end
 
     it 'returns unauthorized if token is missing' do
