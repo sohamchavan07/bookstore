@@ -1,8 +1,3 @@
-databases:
-  - name: bookstore_db
-    databaseName: bookstore
-    user: bookstore_user
-    plan: free
 
 services:
   - type: web
@@ -11,9 +6,7 @@ services:
     plan: free
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: bookstore_db
-          property: connectionString
+        sync: false
       - key: RAILS_MASTER_KEY
         sync: false
       - key: RAILS_ENV
@@ -29,9 +22,7 @@ services:
     plan: free
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: bookstore_db
-          property: connectionString
+        sync: false
       - key: RAILS_MASTER_KEY
         sync: false
       - key: RAILS_ENV
