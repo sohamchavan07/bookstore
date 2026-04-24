@@ -20,7 +20,6 @@ services:
         value: production
       - key: RESEND_API_KEY
         sync: false
-    preDeployCommand: ./bin/rails db:migrate && ./bin/rails db:seed
     healthCheckPath: /up
     autoDeploy: true
 
