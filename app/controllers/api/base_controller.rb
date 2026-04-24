@@ -2,9 +2,20 @@
 
 module Api
   class BaseController < ActionController::API
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from ActionController::ParameterMissing, with: :parameter_missing
+
     before_action :authenticate_with_supabase_jwt
 
     private
+
+    def not_found(exception)
+      render json: { error: exception.message }, status: :not_found
+    end
+
+    def parameter_missing(exception)
+      render json: { error: exception.message }, status: :bad_request
+    end
 
     def authenticate_with_supabase_jwt
       auth_header = request.headers['Authorization']

@@ -2,5 +2,5 @@
 
 class BookSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :title, :author, :price, :category_id, :created_at, :updated_at
+  attributes :id, :title, :author, :price, :category_id, :published_on, :created_at, :updated_at
 end

@@ -19,7 +19,7 @@
     </article>
     <article class="stat-chip">
       <span class="stat-chip-label">Latest publish year</span>
-      <strong><%= @books.map(&:published_on).compact.max&.year || "N/A" %></strong>
+      <strong><%= @books.maximum(:published_on)&.year || "N/A" %></strong>
     </article>
   </div>
 
