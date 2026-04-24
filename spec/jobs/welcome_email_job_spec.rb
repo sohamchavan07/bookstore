@@ -15,7 +15,7 @@ RSpec.describe WelcomeEmailJob, type: :job do
     expect {
       WelcomeEmailJob.perform_now(user.id)
     }.to change(JobLog, :count).by(1)
-    
+
     log = JobLog.last
     expect(log.status).to eq('success')
     expect(log.job_name).to eq('WelcomeEmailJob')
@@ -23,7 +23,7 @@ RSpec.describe WelcomeEmailJob, type: :job do
 
   it 'creates a job log on failure' do
     allow(User).to receive(:find).and_raise(StandardError.new('User not found'))
-    
+
     expect {
       begin
         WelcomeEmailJob.perform_now(user.id)
@@ -31,7 +31,7 @@ RSpec.describe WelcomeEmailJob, type: :job do
         nil
       end
     }.to change(JobLog, :count).by(1)
-    
+
     log = JobLog.last
     expect(log.status).to eq('failed')
     expect(log.message).to eq('User not found')

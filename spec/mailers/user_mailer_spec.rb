@@ -10,7 +10,7 @@ RSpec.describe UserMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Your One-Time Password (OTP) for Bookstore')
-      expect(mail.to).to eq([user.email])
+      expect(mail.to).to eq([ user.email ])
     end
 
     it 'renders the body' do
@@ -23,7 +23,7 @@ RSpec.describe UserMailer, type: :mailer do
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Welcome to our Bookstore!')
-      expect(mail.to).to eq([user.email])
+      expect(mail.to).to eq([ user.email ])
     end
   end
 end
