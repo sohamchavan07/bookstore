@@ -274,6 +274,10 @@ Devise.setup do |config|
 
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
+  if ENV['GOOGLE_CLIENT_ID'].blank? || ENV['GOOGLE_CLIENT_SECRET'].blank?
+    Rails.logger.warn "WARNING: Google OAuth credentials are missing from environment variables."
+  end
+
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
                   scope: 'email, profile',
                   prompt: 'select_account',
