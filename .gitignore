@@ -34,3 +34,6 @@
 
 # Ignore local secrets
 tmp/local_secret.txt
+# AI Agent Skills
+.agents/
+🛡️
