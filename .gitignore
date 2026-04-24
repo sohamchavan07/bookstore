@@ -36,4 +36,5 @@
 tmp/local_secret.txt
 # AI Agent Skills
 .agents/
-🛡️
+# Database dumps
+/dump/
