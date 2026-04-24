@@ -20,7 +20,7 @@ services:
         value: production
       - key: RESEND_API_KEY
         sync: false
-    preDeployCommand: bundle exec rails db:migrate && bundle exec rails db:seed
+    preDeployCommand: ./bin/rails db:migrate && ./bin/rails db:seed
     healthCheckPath: /up
     autoDeploy: true
 
@@ -39,4 +39,4 @@ services:
         value: production
       - key: RESEND_API_KEY
         sync: false
-    command: bundle exec rails solid_queue:start
+    command: ./bin/rails solid_queue:start
