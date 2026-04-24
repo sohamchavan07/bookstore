@@ -16,17 +16,3 @@ services:
     healthCheckPath: /up
     autoDeploy: true
 
-  - type: worker
-    name: bookstore_worker
-    runtime: docker
-    plan: free
-    envVars:
-      - key: DATABASE_URL
-        sync: false
-      - key: RAILS_MASTER_KEY
-        sync: false
-      - key: RAILS_ENV
-        value: production
-      - key: RESEND_API_KEY
-        sync: false
-    dockerCommand: ./bin/rails solid_queue:start
