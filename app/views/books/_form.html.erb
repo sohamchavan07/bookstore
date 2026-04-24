@@ -29,9 +29,6 @@
     <div class="field">
       <%= form.label :category_id, "Category" %>
       <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Select a Category" }, { class: "book-select", disabled: @categories.empty? } %>
-      <% if @categories.empty? %>
-        <small style="color: var(--text-muted);">No categories available yet. Add categories first.</small>
-      <% end %>
     </div>
 
     <div class="field">
