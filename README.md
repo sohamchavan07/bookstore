@@ -31,6 +31,16 @@ Welcome to the **Premium Bookstore**, a modern, high-performance web application
 
 ---
 
+## 📝 Development Log
+
+This project maintains a detailed [Development & Deployment Log](DEVELOPMENT_LOG.md) that tracks:
+- Deployment strategies (Render Free Tier).
+- Lessons learned and bug fixes.
+- Database migration details (SQLite to PostgreSQL).
+- Environment variable requirements.
+
+---
+
 ## ⚙️ Getting Started
 
 ### Prerequisites
