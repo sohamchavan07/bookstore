@@ -1,32 +1,58 @@
-# 📚 Premium Bookstore Application
+# 🚀 Premium Bookstore
 
-Welcome to the **Premium Bookstore**, a modern, high-performance web application built with **Ruby on Rails 8**. This application provides a seamless experience for browsing, searching, and managing a curated collection of books across various categories.
+> **Modern, high-performance web application** — to browse, search, and manage a curated collection of books.
+
+[![Ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
+[![Rails](https://img.shields.io/badge/Rails-CC0000?style=for-the-badge&logo=rubyonrails&logoColor=white)](https://rubyonrails.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-sohamchavan.site-blueviolet?style=for-the-badge)](https://www.sohamchavan.site/)
 
 ---
 
-## 🚀 Features
+## 📌 Table of Contents
 
-- **Dynamic Catalog**: Browse a wide range of books across categories like Fiction, Science, History, and more.
-- **Advanced Search**: Quickly find your favorite books by title or author.
-- **Secure Authentication**: Integrated with **Devise** for user management, featuring:
-  - Email/Password login.
-  - **OTP Verification**: Enhanced security with One-Time Password flow.
-  - **Google OAuth2**: One-click login with Google.
-- **Responsive Design**: A stunning, premium UI built with **TailwindCSS**, optimized for all devices.
-- **Robust API**: RESTful API endpoints for external integrations.
+- [About](#-about)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Development Log](#-development-log)
+- [Getting Started](#-getting-started)
+- [Usage](#-usage)
+- [Screenshots](#-screenshots)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [Author](#-author)
+
+---
+
+## 📖 About
+
+Premium Bookstore is a modern web application built to solve the need for a seamless book management and browsing experience.
+It is designed for avid readers and administrators, focusing on high-performance catalog navigation, premium responsive UI, and secure authentication workflows.
+
+---
+
+## ✨ Features
+
+- ✅ **Dynamic Catalog** — Browse a wide range of books across categories like Fiction, Science, History, and more.
+- ✅ **Advanced Search** — Quickly find your favorite books by title or author with powerful filtering.
+- ✅ **Secure Authentication** — Complete user management with Devise, featuring OTP verification and Google OAuth2 login.
+- ✅ **Responsive Design** — A stunning, premium UI built with TailwindCSS, optimized for all devices.
+- ✅ **Robust API** — RESTful API endpoints for external integrations and data access.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Component | Technology |
+| Layer | Technology |
 | :--- | :--- |
-| **Framework** | Ruby on Rails 8.0.2 |
+| **Backend** | Ruby on Rails 8.0.2 |
 | **Database** | PostgreSQL |
-| **Styling** | TailwindCSS |
-| **Auth** | Devise & OmniAuth (Google) |
-| **Testing** | RSpec & Capybara |
+| **Frontend** | HTML · JavaScript · TailwindCSS |
+| **Auth** | Devise · OmniAuth (Google) |
 | **Background Jobs** | Sidekiq |
+| **Testing** | RSpec & Capybara |
 | **Assets** | Propshaft & Importmap |
 
 ---
@@ -34,80 +60,116 @@ Welcome to the **Premium Bookstore**, a modern, high-performance web application
 ## 📝 Development Log
 
 This project maintains a detailed [Development & Deployment Log](DEVELOPMENT_LOG.md) that tracks:
-- Deployment strategies (Render Free Tier).
+- Deployment strategies (e.g. Render Free Tier).
 - Lessons learned and bug fixes.
 - Database migration details (SQLite to PostgreSQL).
 - Environment variable requirements.
 
 ---
 
-## ⚙️ Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
-- **Ruby**: 3.2.2+ (Check `.ruby-version` or `Dockerfile`)
-- **PostgreSQL**: Ensure it's running on your system.
-- **Bundler**: `gem install bundler`
+
+```bash
+ruby       >= 3.2.2
+rails      >= 8.0.2
+postgresql >= 12
+bundler    >= 2.4
+```
 
 ### Installation
 
-1.  **Clone the repository**:
-    ```bash
-    git clone git@github.com:sohamchavan07/bookstore.git
-    cd bookstore
-    ```
-
-2.  **Install dependencies**:
-    ```bash
-    bundle install
-    ```
-
-3.  **Database Setup**:
-    ```bash
-    bin/rails db:create
-    bin/rails db:migrate
-    bin/rails db:seed
-    ```
-
-4.  **Start the Server**:
-    ```bash
-    bin/dev
-    ```
-    *Open `http://localhost:3000` in your browser.*
-
----
-
-## 🧪 Running Tests
-
-We use **RSpec** for our test suite. To run all tests:
 ```bash
-bundle exec rspec
+# 1. Clone the repo
+git clone git@github.com:sohamchavan07/bookstore.git
+cd bookstore
+
+# 2. Install dependencies
+bundle install
+
+# 3. Set up environment variables
+cp .env.example .env
+# Fill in the required values in .env
+
+# 4. Set up the database
+bin/rails db:create db:migrate db:seed
+
+# 5. Start the dev server
+bin/dev
 ```
 
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
 ---
 
-## 🐳 Docker Support
+## 💡 Usage
 
-For production-ready deployment, a `Dockerfile` is included. You can build and run the containerized app:
 ```bash
+# Run the test suite
+bundle exec rspec
+
+# Run Sidekiq (if applicable for background jobs)
+bundle exec sidekiq
+
+# Build and run Docker container (for production-ready deployment)
 docker build -t bookstore .
 docker run -p 80:80 -e RAILS_MASTER_KEY=<your_key> bookstore
 ```
 
 ---
 
+## 📸 Screenshots
+
+| Page / Feature | Preview |
+|----------------|---------|
+| Catalog Search | ![Search Feature](./screenshots/search_placeholder.png) |
+| Authentication | ![Auth Feature](./screenshots/auth_placeholder.png) |
+
+> *Add actual screenshots to the `/screenshots` folder in the repo root.*
+
+---
+
+## 🗺️ Roadmap
+
+- [x] MVP — core features live
+- [x] Add authentication (OTP, Google OAuth2)
+- [x] Mobile-responsive polish
+- [x] Switch database from SQLite to PostgreSQL
+- [ ] Deploy to production on Render
+- [ ] Setup CI/CD Pipeline
+
+---
+
 ## 🤝 Contributing
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+Contributions, issues and feature requests are welcome!
+
+1. Fork the repo
+2. Create your branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'feat: add your feature'`
+4. Push to the branch: `git push origin feature/your-feature`
 5. Open a Pull Request
+
+---
+
+## 👤 Author
+
+**Soham Chavan**
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-sohamchavan.site-blueviolet?style=flat-square)](https://www.sohamchavan.site/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sohamchavan07/)
+[![X](https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/soham_chavan07)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:sohamchavan.sc07@gmail.com)
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
-*Created with ❤️ by [Soham Chavan](https://github.com/sohamchavan07)*
+
+<p align="center">
+  Made with ❤️ by <a href="https://www.sohamchavan.site/">Soham Chavan</a>
+</p>

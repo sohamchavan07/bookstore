@@ -14,8 +14,8 @@ RSpec.describe "Book Search and Filter", type: :system do
   it "allows searching by title" do
     visit books_path
 
-    fill_in "Search by title or author", with: "Gatsby"
-    click_on "Search"
+    fill_in "Search Collection", with: "Gatsby"
+    click_on "Filter"
 
     expect(page).to have_content("The Great Gatsby")
     expect(page).not_to have_content("A Brief History of Time")
@@ -25,8 +25,8 @@ RSpec.describe "Book Search and Filter", type: :system do
   it "allows filtering by category" do
     visit books_path
 
-    select "Science", from: "Filter by Category"
-    click_on "Search"
+    select "Science", from: "Category Filter"
+    click_on "Filter"
 
     expect(page).to have_content("A Brief History of Time")
     expect(page).not_to have_content("The Great Gatsby")
@@ -36,9 +36,9 @@ RSpec.describe "Book Search and Filter", type: :system do
   it "combines search and category filter" do
     visit books_path
 
-    fill_in "Search by title or author", with: "Great"
-    select "Fiction", from: "Filter by Category"
-    click_on "Search"
+    fill_in "Search Collection", with: "Great"
+    select "Fiction", from: "Category Filter"
+    click_on "Filter"
 
     expect(page).to have_content("The Great Gatsby")
     expect(page).to have_content("The Great Alone")
@@ -48,12 +48,12 @@ RSpec.describe "Book Search and Filter", type: :system do
   it "can clear filters" do
     visit books_path
 
-    fill_in "Search by title or author", with: "Gatsby"
-    click_on "Search"
+    fill_in "Search Collection", with: "Gatsby"
+    click_on "Filter"
 
     expect(page).not_to have_content("A Brief History of Time")
 
-    click_on "Clear"
+    click_on "Clear Filters"
 
     expect(page).to have_content("The Great Gatsby")
     expect(page).to have_content("A Brief History of Time")

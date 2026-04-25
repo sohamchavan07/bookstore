@@ -1,58 +1,414 @@
-<section class="auth-shell">
-  <div class="auth-card">
-    <div class="auth-header">
-      <h1>Create Account</h1>
-      <p>Join our community of book lovers</p>
-    </div>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <% if resource.errors.any? %>
-      <div class="auth-errors">
-        <% resource.errors.full_messages.each do |message| %>
-          <p><%= message %></p>
-        <% end %>
-      </div>
-    <% end %>
+<style>
+  .lsu-shell-wrap {
+    background: #f5f1ea;
+    min-height: calc(100vh - 220px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    font-family: "DM Sans", sans-serif;
+  }
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "auth-form" }) do |f| %>
-      <div class="field">
-        <%= f.label :email, "Email Address" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@example.com" %>
-      </div>
+  .lsu-shell-wrap *, .lsu-shell-wrap *::before, .lsu-shell-wrap *::after {
+    box-sizing: border-box;
+  }
 
-      <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••" %>
-        <% if @minimum_password_length %>
-          <small class="auth-hint"><%= @minimum_password_length %> characters minimum</small>
-        <% end %>
-      </div>
+  .lsu-shell {
+    width: 100%;
+    max-width: 460px;
+  }
 
-      <div class="field">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••" %>
-      </div>
+  .lsu-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
 
-      <%= f.submit "Create Account", class: "auth-submit" %>
-    <% end %>
+  .lsu-wordmark-icon {
+    width: 32px;
+    height: 32px;
+    background: #1a3d2b;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    <div class="auth-divider">
-      <span>Continue with</span>
-    </div>
+  .lsu-wordmark-name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a18;
+    letter-spacing: .02em;
+  }
 
-    <div class="auth-social-actions">
-      <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "auth-btn-social" do %>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+  .lsu-card {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #e8e2d8;
+    padding: 2.5rem 2.5rem 2rem;
+    box-shadow: 0 1px 3px rgba(26, 20, 10, .06), 0 8px 32px rgba(26, 20, 10, .06);
+  }
+
+  .lsu-auth-header {
+    margin-bottom: 2rem;
+  }
+
+  .lsu-auth-header h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a1a18;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .lsu-auth-header p {
+    font-size: 14px;
+    color: #7a7368;
+    font-weight: 300;
+  }
+
+  .lsu-error-box {
+    background: #fef2f0;
+    border: 1px solid #f9cfc9;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 1.5rem;
+    font-size: 13px;
+    color: #b04030;
+  }
+
+  .lsu-field {
+    margin-bottom: 1.25rem;
+  }
+
+  .lsu-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #4a4640;
+    margin-bottom: 8px;
+  }
+
+  .lsu-field input[type="email"],
+  .lsu-field input[type="password"] {
+    width: 100%;
+    height: 44px;
+    border: 1.5px solid #ddd9d0;
+    border-radius: 8px;
+    padding: 0 14px;
+    font-size: 14px;
+    font-family: "DM Sans", sans-serif;
+    color: #1a1a18;
+    background: #faf8f5;
+    transition: border-color .15s, background .15s, box-shadow .15s;
+    outline: none;
+  }
+
+  .lsu-field input[type="email"]:focus,
+  .lsu-field input[type="password"]:focus {
+    border-color: #1a3d2b;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(26, 61, 43, .08);
+  }
+
+  .lsu-field input::placeholder {
+    color: #b8b3ac;
+  }
+
+  .lsu-password-wrap {
+    position: relative;
+  }
+
+  .lsu-password-wrap input {
+    padding-right: 42px;
+  }
+
+  .lsu-eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: transparent;
+    color: #7a7368;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .lsu-eye-btn:hover {
+    color: #1a3d2b;
+  }
+
+  .lsu-eye-off {
+    display: none;
+  }
+
+  .lsu-eye-btn.lsu-showing .lsu-eye-on {
+    display: none;
+  }
+
+  .lsu-eye-btn.lsu-showing .lsu-eye-off {
+    display: block;
+  }
+
+  .lsu-strength-row {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .lsu-strength-bar {
+    flex: 1;
+    height: 3px;
+    border-radius: 99px;
+    background: #e8e2d8;
+    transition: background .2s;
+  }
+
+  .lsu-strength-bar.lsu-active {
+    background: #1a3d2b;
+  }
+
+  .lsu-strength-label {
+    font-size: 11px;
+    color: #9a9590;
+    margin-top: 5px;
+    display: block;
+  }
+
+  .lsu-submit-btn {
+    width: 100%;
+    height: 46px;
+    background: #1a3d2b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    margin-bottom: 1rem;
+  }
+
+  .lsu-submit-btn:hover {
+    background: #163325;
+  }
+
+  .lsu-submit-btn:active {
+    transform: scale(.99);
+  }
+
+  .lsu-legal {
+    font-size: 11.5px;
+    color: #9a9590;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .lsu-legal a {
+    color: #4a7c5f;
+    text-decoration: none;
+  }
+
+  .lsu-legal a:hover {
+    text-decoration: underline;
+  }
+
+  .lsu-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.25rem;
+  }
+
+  .lsu-divider::before, .lsu-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #e8e2d8;
+  }
+
+  .lsu-divider span {
+    font-size: 12px;
+    color: #b0ab9f;
+  }
+
+  .lsu-google-btn {
+    width: 100%;
+    height: 44px;
+    background: #fff;
+    border: 1.5px solid #ddd9d0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    color: #2a2722;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color .15s, background .15s, box-shadow .15s;
+    margin-bottom: 1.75rem;
+  }
+
+  .lsu-google-btn:hover {
+    border-color: #bbb5ac;
+    background: #faf8f5;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+  }
+
+  .lsu-login-row {
+    text-align: center;
+    font-size: 13px;
+    color: #7a7368;
+  }
+
+  .lsu-login-row a {
+    color: #1a3d2b;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .lsu-login-row a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<section class="lsu-shell-wrap">
+  <div class="lsu-shell">
+    <div class="lsu-wordmark">
+      <div class="lsu-wordmark-icon">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="3" y="2" width="3" height="14" rx="1" fill="#a7c4b3" />
+          <rect x="7.5" y="2" width="3" height="14" rx="1" fill="#d4e8dc" />
+          <rect x="12" y="2" width="3" height="14" rx="1" fill="#fff" opacity="0.6" />
         </svg>
-        <span>Google</span>
-      <% end %>
+      </div>
+      <span class="lsu-wordmark-name">LibraryShelf</span>
     </div>
 
-    <div class="auth-links">
-      <p class="text-sm text-slate-500">Already have an account? <%= link_to "Sign in instead", new_session_path(resource_name) %></p>
+    <div class="lsu-card">
+      <div class="lsu-auth-header">
+        <h1>Create account</h1>
+        <p>Join our community of book lovers</p>
+      </div>
+
+      <% if resource.errors.any? %>
+        <div class="lsu-error-box">
+          <% resource.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="lsu-field">
+          <%= f.label :email, "Email Address" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@example.com" %>
+        </div>
+
+        <div class="lsu-field">
+          <%= f.label :password %>
+          <div class="lsu-password-wrap">
+            <%= f.password_field :password, id: "lsu-pw", autocomplete: "new-password", placeholder: "••••••••", oninput: "lsuUpdateStrength(this.value)" %>
+            <button type="button" class="lsu-eye-btn" aria-label="Show password" onclick="lsuTogglePassword()">
+              <svg class="lsu-eye-on" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.7"/>
+              </svg>
+              <svg class="lsu-eye-off" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 3l18 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M10.6 6.3A10.9 10.9 0 0 1 12 6c6.5 0 10.5 6 10.5 6a17.4 17.4 0 0 1-3.2 3.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.4 6.6A18.2 18.2 0 0 0 1.5 12s4 7 10.5 7a10 10 0 0 0 4.2-.9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+          <div class="lsu-strength-row">
+            <div class="lsu-strength-bar" id="lsu-s1"></div>
+            <div class="lsu-strength-bar" id="lsu-s2"></div>
+            <div class="lsu-strength-bar" id="lsu-s3"></div>
+            <div class="lsu-strength-bar" id="lsu-s4"></div>
+          </div>
+          <span class="lsu-strength-label" id="lsu-slabel">
+            <%= @minimum_password_length ? "#{@minimum_password_length} characters minimum" : "8 characters minimum" %>
+          </span>
+        </div>
+
+        <div class="lsu-field">
+          <%= f.label :password_confirmation, "Confirm Password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••" %>
+        </div>
+
+        <%= f.submit "Continue", class: "lsu-submit-btn" %>
+      <% end %>
+
+      <p class="lsu-legal">
+        By clicking Continue, you agree to our <%= link_to "Terms and Conditions", "#" %>.
+      </p>
+
+      <div class="lsu-divider"><span>Or</span></div>
+
+      <%= button_to user_google_oauth2_omniauth_authorize_path, data: { turbo: false }, class: "lsu-google-btn", form_class: "lsu-social-form" do %>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+        </svg>
+        Continue with Google
+      <% end %>
+
+      <p class="lsu-login-row">
+        Already have an account? <%= link_to "Log in", new_session_path(resource_name) %>
+      </p>
     </div>
   </div>
 </section>
+
+<script>
+  function lsuUpdateStrength(v) {
+    const bars = [
+      document.getElementById("lsu-s1"),
+      document.getElementById("lsu-s2"),
+      document.getElementById("lsu-s3"),
+      document.getElementById("lsu-s4")
+    ];
+    let score = 0;
+    if (v.length >= 8) score++;
+    if (v.length >= 12) score++;
+    if (/[A-Z]/.test(v) && /[0-9]/.test(v)) score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+    bars.forEach((bar, i) => bar.classList.toggle("lsu-active", i < score));
+    const labels = ["8 characters minimum", "Weak", "Fair", "Good", "Strong"];
+    document.getElementById("lsu-slabel").textContent = labels[score];
+  }
+
+  function lsuTogglePassword() {
+    const input = document.getElementById("lsu-pw");
+    const button = document.querySelector(".lsu-eye-btn");
+    if (!input || !button) return;
+
+    const showing = input.type === "text";
+    input.type = showing ? "password" : "text";
+    button.classList.toggle("lsu-showing", !showing);
+    button.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+  }
+</script>

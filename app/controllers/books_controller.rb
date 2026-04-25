@@ -7,10 +7,8 @@ class BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
-    @books = @books.search_by_term(params[:query]) if params[:query].present?
-    @books = @books.by_category(params[:category_id]) if params[:category_id].present?
-
+    result  = Books::SearchBooksService.call(query: params[:query], category_id: params[:category_id])
+    @books  = result.payload
     @categories = Category.order(:name)
   end
 
@@ -27,10 +25,13 @@ class BooksController < ApplicationController
 
   # POST /books
   def create
-    @book = Book.new(book_params)
-    if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+    result = Books::CreateBookService.call(book_params)
+
+    if result.success?
+      redirect_to result.payload, notice: 'Book was successfully created.'
     else
+      @book = Book.new(book_params)
+      @book.errors.add(:base, result.error)
       render :new, status: :unprocessable_content
     end
   end

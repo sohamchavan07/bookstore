@@ -6,32 +6,15 @@ module Auth
     end
 
     def create
-      token = params[:access_token]
-      return render json: { error: 'No token provided' }, status: :bad_request if token.blank?
+      token  = params[:access_token]
+      result = Users::AuthenticateWithSupabaseJwtService.call(token)
 
-      begin
-        # Verify the token with Supabase JWT Secret
-        # Note: In a real app, you'd want to handle multiple keys or fetch from JWKS if available
-        # But for Supabase, it's a fixed secret.
-        decoded_token = JWT.decode(token, Supabase.jwt_secret, true, { algorithm: 'HS256' })
-        payload = decoded_token.first
-
-        supabase_id = payload['sub']
-        email = payload['email']
-
-        user = User.find_or_create_by!(email: email) do |u|
-          u.supabase_id = supabase_id
-          u.password = SecureRandom.hex(16) if u.respond_to?(:password=) # For Devise compatibility
-        end
-
-        user.update!(supabase_id: supabase_id) if user.supabase_id.blank?
-
-        session[:user_id] = user.id
+      if result.success?
+        session[:user_id] = result.payload.id
         render json: { message: 'Logged in successfully' }, status: :ok
-      rescue JWT::DecodeError => e
-        render json: { error: "Invalid token: #{e.message}" }, status: :unauthorized
-      rescue StandardError => e
-        render json: { error: e.message }, status: :internal_server_error
+      else
+        status = token.blank? ? :bad_request : :unauthorized
+        render json: { error: result.error }, status: status
       end
     end
 

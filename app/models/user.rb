@@ -9,22 +9,6 @@ class User < ApplicationRecord
 
   after_create :send_welcome_email
 
-  def self.from_omniauth(auth)
-    user = find_by(provider: auth.provider, uid: auth.uid) || find_by(email: auth.info.email)
-
-    if user
-      user.update(provider: auth.provider, uid: auth.uid) if user.provider.blank?
-    else
-      user = create!(
-        provider: auth.provider,
-        uid: auth.uid,
-        email: auth.info.email,
-        password: Devise.friendly_token[0, 20]
-      )
-    end
-    user
-  end
-
   def generate_otp!
     self.otp_code = sprintf('%06d', rand(100_000..999_999))
     self.otp_sent_at = Time.current

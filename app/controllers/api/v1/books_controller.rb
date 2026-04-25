@@ -5,8 +5,8 @@ module Api
     class BooksController < Api::BaseController
       # GET /api/v1/books
       def index
-        books = Book.all
-        render json: BookSerializer.new(books).serializable_hash
+        result = Books::SearchBooksService.call(query: params[:query], category_id: params[:category_id])
+        render json: BookSerializer.new(result.payload).serializable_hash
       end
 
       # GET /api/v1/books/:id
@@ -17,11 +17,12 @@ module Api
 
       # POST /api/v1/books
       def create
-        book = Book.new(book_params)
-        if book.save
-          render json: BookSerializer.new(book).serializable_hash, status: :created
+        result = Books::CreateBookService.call(book_params)
+
+        if result.success?
+          render json: BookSerializer.new(result.payload).serializable_hash, status: :created
         else
-          render json: { errors: book.errors.full_messages }, status: :unprocessable_content
+          render json: { errors: result.error }, status: :unprocessable_entity
         end
       end
 

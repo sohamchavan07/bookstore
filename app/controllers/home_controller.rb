@@ -2,7 +2,10 @@
 
 class HomeController < ApplicationController
   before_action :authenticate_user!, only: [ :dashboard ]
-  def index; end
+  def index
+    @featured_books = Book.includes(:category).order(created_at: :desc).limit(6)
+    @categories = Category.all.limit(4)
+  end
 
   def dashboard
     @book_count = Book.count

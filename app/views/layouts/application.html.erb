@@ -10,47 +10,72 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
+  <% auth_standalone_page = devise_controller? && ((controller_name == "sessions" && action_name == "new") || (controller_name == "registrations" && action_name == "new") || (controller_name == "passwords" && action_name == "new")) %>
   <body class="h-full flex flex-col font-sans text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
     
-    <!-- Navigation -->
-    <header class="navbar">
-      <div class="container nav-container">
-        <%= link_to root_path, class: "nav-brand" do %>
-          <span aria-hidden="true">📚</span>
-          <span>BookStore</span>
-        <% end %>
-
-        <nav class="nav-links" aria-label="Primary">
-          <%= link_to "Browse Books", books_path, class: "btn btn-ghost btn-sm" %>
-          <% if user_signed_in? %>
-            <%= link_to "Add Book", new_book_path, class: "btn btn-primary btn-sm" %>
-            <span class="nav-text hidden sm:block"><%= current_user.email %></span>
-            <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-outline btn-sm" %>
-          <% else %>
-            <%= link_to "Login", new_user_session_path, class: "btn btn-ghost btn-sm" %>
-            <%= link_to "Create Account", new_user_registration_path, class: "btn btn-primary btn-sm" %>
+    <% unless auth_standalone_page %>
+      <!-- Navigation -->
+      <header class="navbar sticky top-0 z-50 backdrop-blur-lg bg-slate-900/80 border-b border-slate-800 transition-all duration-300">
+        <div class="container flex items-center justify-between h-20">
+          <%= link_to root_path, class: "flex items-center gap-3 group" do %>
+            <div class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
+              <span class="text-xl">📚</span>
+            </div>
+            <span class="text-xl font-bold text-white tracking-tight">Book<span class="text-indigo-400">Store</span></span>
           <% end %>
-        </nav>
-      </div>
-    </header>
+
+          <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+            <%= link_to "Browse", books_path, class: "text-sm font-medium text-slate-400 hover:text-white transition-colors" %>
+            <% if user_signed_in? %>
+              <details class="relative">
+                <summary class="list-none cursor-pointer select-none flex items-center gap-2 text-xs font-semibold text-slate-300 bg-slate-800/80 hover:bg-slate-700/80 px-3 py-2 rounded-xl transition-colors border border-slate-700">
+                  <span class="max-w-[180px] truncate"><%= current_user.email %></span>
+                  <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </summary>
+                <div class="absolute right-0 mt-2 w-52 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl p-2 z-50">
+                  <%= link_to "Dashboard", dashboard_path, class: "block w-full px-3 py-2 text-sm text-slate-200 hover:bg-slate-800 rounded-lg transition-colors" %>
+                  <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "block w-full text-left px-3 py-2 text-sm text-rose-400 hover:bg-slate-800 rounded-lg transition-colors bg-transparent border-0 cursor-pointer" %>
+                </div>
+              </details>
+            <% else %>
+              <%= link_to "Login", new_user_session_path, class: "text-sm font-medium text-slate-400 hover:text-white transition-colors" %>
+              <%= link_to "Join Now", new_user_registration_path, class: "px-6 py-2.5 bg-indigo-600 text-white text-sm font-bold rounded-xl hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-600/20" %>
+            <% end %>
+          </nav>
+
+          <!-- Mobile Menu Toggle (simplified) -->
+          <div class="md:hidden flex items-center gap-3">
+            <% if user_signed_in? %>
+              <%= link_to "Dashboard", dashboard_path, class: "text-xs font-medium text-slate-300 hover:text-white transition-colors" %>
+              <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-xs font-bold text-rose-400 hover:text-rose-300 transition-colors bg-transparent border border-rose-500/30 rounded-lg px-3 py-2" %>
+            <% else %>
+              <%= link_to "Login", new_user_session_path, class: "text-xs font-medium text-slate-300 hover:text-white transition-colors" %>
+              <%= link_to "Sign up", new_user_registration_path, class: "text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg px-3 py-2 transition-colors" %>
+            <% end %>
+          </div>
+        </div>
+      </header>
+    <% end %>
 
     <!-- Flash Messages -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+    <div class="fixed top-24 right-6 z-[60] max-w-md w-full pointer-events-none">
       <% if notice %>
-        <div class="bg-indigo-50 border-l-4 border-indigo-500 text-indigo-700 p-4 rounded-r shadow-sm animate-fade-in" role="alert">
-          <p><%= notice %></p>
+        <div class="pointer-events-auto bg-slate-900/90 backdrop-blur-xl border border-emerald-500/20 text-emerald-400 p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-slide-in-right" role="alert">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <p class="text-sm font-semibold"><%= notice %></p>
         </div>
       <% end %>
       <% if alert %>
-        <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-r shadow-sm animate-fade-in" role="alert">
-          <p><%= alert %></p>
+        <div class="pointer-events-auto bg-slate-900/90 backdrop-blur-xl border border-rose-500/20 text-rose-400 p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-slide-in-right" role="alert">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <p class="text-sm font-semibold"><%= alert %></p>
         </div>
       <% end %>
     </div>
@@ -60,30 +85,48 @@
       <%= yield %>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-inner">
-          <p class="footer-copy">
-            &copy; <%= Time.current.year %> BookStore
-            <span class="hidden sm:inline">- Curated titles for modern readers.</span>
-          </p>
-          <div class="footer-actions">
-            <%= link_to "https://github.com/sohamchavan07/bookstore", class: "btn btn-ghost btn-sm github-link", target: "_blank", rel: "noopener" do %>
-              <svg class="github-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-              </svg>
-              <span>GitHub</span>
-            <% end %>
-            <%= link_to "All Books", books_path, class: "btn btn-ghost btn-sm" %>
-            <% if user_signed_in? %>
-              <%= link_to "Add New", new_book_path, class: "btn btn-outline btn-sm" %>
-            <% else %>
-              <%= link_to "Join", new_user_registration_path, class: "btn btn-outline btn-sm" %>
-            <% end %>
+    <% unless auth_standalone_page %>
+      <!-- Footer -->
+      <footer class="footer py-16 bg-slate-950 border-t border-slate-900">
+        <div class="container">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-2">
+              <%= link_to root_path, class: "flex items-center gap-3 mb-6" do %>
+                <span class="text-2xl font-bold text-white tracking-tight">Book<span class="text-indigo-400">Store</span></span>
+              <% end %>
+              <p class="text-slate-500 max-w-sm leading-relaxed">
+                The premium destination for book curators and digital library enthusiasts. 
+                Experience a seamless way to manage your collection.
+              </p>
+            </div>
+            <div>
+              <h4 class="text-white font-bold mb-6">Navigation</h4>
+              <ul class="space-y-4 text-sm text-slate-500">
+                <li><%= link_to "Browse Books", books_path, class: "hover:text-indigo-400 transition-colors" %></li>
+                <li><%= link_to "Featured Titles", root_path, class: "hover:text-indigo-400 transition-colors" %></li>
+                <li><%= link_to "API Documentation", "#", class: "hover:text-indigo-400 transition-colors" %></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-white font-bold mb-6">Connect</h4>
+              <div class="flex items-center gap-4">
+                <%= link_to "https://github.com/sohamchavan07/bookstore", class: "w-10 h-10 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition-all", target: "_blank" do %>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between gap-6 items-center">
+            <p class="text-xs text-slate-600">
+              &copy; <%= Time.current.year %> BookStore Collection. All rights reserved.
+            </p>
+            <div class="flex gap-8 text-xs text-slate-600 font-medium">
+              <a href="#" class="hover:text-slate-400">Privacy Policy</a>
+              <a href="#" class="hover:text-slate-400">Terms of Service</a>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    <% end %>
   </body>
 </html>
