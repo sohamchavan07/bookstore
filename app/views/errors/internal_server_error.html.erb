@@ -1,0 +1,15 @@
+<div class="auth-shell">
+  <div class="auth-card text-center" data-controller="reveal">
+    <div class="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-slate-900/60 border border-slate-700/50 shadow-lg">
+      <i class="fa-solid fa-triangle-exclamation fa-2x text-rose-400"></i>
+    </div>
+    <h1 class="text-4xl font-bold mb-4 font-outfit text-white">500</h1>
+    <h2 class="text-xl text-slate-300 font-semibold mb-3">Server Error</h2>
+    <p class="text-slate-400 mb-8 max-w-sm mx-auto leading-relaxed">
+      An unexpected error occurred on our end. Our engineering team has been automatically notified and is investigating.
+    </p>
+    <%= link_to root_path, class: "btn btn-primary w-full" do %>
+      <i class="fa-solid fa-house"></i> Return Home
+    <% end %>
+  </div>
+</div>

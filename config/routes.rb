@@ -30,4 +30,8 @@ Rails.application.routes.draw do
 
   # Favicon redirect
   get '/favicon.ico', to: redirect('/favicon.png')
+
+  # Custom Error Pages
+  match '/404', to: 'errors#not_found', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 end

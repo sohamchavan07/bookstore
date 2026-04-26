@@ -1,6 +1,6 @@
 <section class="hero hero-home">
   <div class="container hero-layout">
-    <div class="hero-copy">
+    <div class="hero-copy" data-controller="reveal">
       <span class="hero-kicker">Modern Library Experience</span>
       <h1>Design-forward catalog management for modern bookstores.</h1>
       <p>
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="hero-panel">
+    <div class="hero-panel" data-controller="reveal">
       <h3>What you can do</h3>
       <ul>
         <li><i class="fa-solid fa-check"></i> Maintain a neat digital shelf</li>
@@ -36,21 +36,21 @@
     <h2>Everything your team needs</h2>
   </div>
   <div class="card-grid">
-    <article class="card feature-card">
+    <article class="card feature-card" data-controller="reveal">
       <i class="fa-solid fa-layer-group fa-2x feature-icon feature-icon-primary"></i>
       <h3>Extensive Library</h3>
       <p>Search, browse, and organize your books in a polished and readable interface.</p>
       <%= link_to "View Books", books_path, class: "feature-link" %>
     </article>
 
-    <article class="card feature-card">
+    <article class="card feature-card" data-controller="reveal">
       <i class="fa-solid fa-code fa-2x feature-icon feature-icon-accent"></i>
       <h3>Developer API</h3>
       <p>Integrate your tools with the BookStore API for automation and custom workflows.</p>
       <%= link_to "Create Book", new_book_path, class: "feature-link" %>
     </article>
 
-    <article class="card feature-card">
+    <article class="card feature-card" data-controller="reveal">
       <i class="fa-solid fa-gauge-high fa-2x feature-icon feature-icon-warning"></i>
       <h3>System Status</h3>
       <p>Monitor your library's health, background jobs, and performance metrics from the dashboard.</p>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full">
+<html class="h-full scroll-smooth">
   <head>
     <title>BookStore | Premium Collection</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,8 +22,8 @@
     
     <% unless auth_standalone_page %>
       <!-- Navigation -->
-      <header class="navbar sticky top-0 z-50 backdrop-blur-lg bg-slate-900/80 border-b border-slate-800 transition-all duration-300">
-        <div class="container flex items-center justify-between h-20">
+      <header data-controller="navbar" class="navbar sticky top-0 z-50 bg-transparent border-b border-transparent transition-all duration-300">
+        <div class="container flex items-center justify-between h-20 transition-all duration-300">
           <%= link_to root_path, class: "flex items-center gap-3 group" do %>
             <div class="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
               <span class="text-xl">📚</span>
