@@ -11,11 +11,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', kind: 'Google'
       sign_in_and_redirect result.payload, event: :authentication
     else
-      session['devise.google_data'] = auth_payload.to_h.except('extra')
+      session['devise.google_data'] = {
+        provider: auth_payload.provider,
+        uid: auth_payload.uid,
+        email: auth_payload.dig('info', 'email') || auth_payload.info&.email
+      }.compact
       redirect_to new_user_registration_url, alert: result.error
     end
   rescue StandardError => e
     Rails.logger.error("Google OAuth callback error: #{e.class} - #{e.message}")
+    Rails.logger.error(e.backtrace.first(10).join("\n")) if e.backtrace.present?
     handle_oauth_failure('Unable to sign in with Google right now. Please try again.')
   end
 

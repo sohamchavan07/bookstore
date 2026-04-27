@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
-  after_create :send_welcome_email
+  after_commit :send_welcome_email, on: :create
 
   def generate_otp!
     self.otp_code = sprintf('%06d', rand(100_000..999_999))
@@ -30,5 +30,7 @@ class User < ApplicationRecord
 
   def send_welcome_email
     WelcomeEmailJob.perform_later(id)
+  rescue StandardError => e
+    Rails.logger.error("Welcome email enqueue failed for user #{id}: #{e.class} - #{e.message}")
   end
 end
