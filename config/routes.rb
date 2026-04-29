@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   # API routes
   namespace :api do
     namespace :v1 do
+      post "/login", to: "auth#login"
       resources :books, only: %i[index show create]
     end
   end
