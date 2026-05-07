@@ -47,7 +47,7 @@
         <div style="flex: 1; display: flex; gap: 10px;">
           <%= f.submit "Filter", class: "lp-btn-main", style: "flex-grow: 1; margin: 0; padding: 11px 20px;" %>
           <% if params[:query].present? || params[:category_id].present? %>
-            <%= link_to "Clear", books_path, class: "lp-btn-ghost", style: "margin: 0; padding: 11px 20px;" %>
+            <%= link_to "Clear Filters", books_path, class: "lp-btn-ghost", style: "margin: 0; padding: 11px 20px;" %>
           <% end %>
         </div>
       <% end %>
