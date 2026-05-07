@@ -1,60 +1,68 @@
-<section class="hero hero-home">
-  <div class="container hero-layout">
-    <div class="hero-copy" data-controller="reveal">
-      <span class="hero-kicker">Modern Library Experience</span>
-      <h1>Design-forward catalog management for modern bookstores.</h1>
-      <p>
-        Discover titles, track your inventory, and keep your reading catalog organized in a clean,
-        distraction-free workspace built for book lovers and teams.
-      </p>
-
-      <div class="hero-actions">
-        <%= link_to books_path, class: "btn btn-primary" do %>
-          <i class="fa-solid fa-book"></i> Browse Collection
-        <% end %>
-
-        <%= link_to new_book_path, class: "btn btn-outline" do %>
-          <i class="fa-solid fa-plus"></i> Add Book
-        <% end %>
+<div class="lp-wrap">
+  <section>
+    <div class="lp-hero">
+      <div>
+        <div class="lp-kicker">Modern Library Experience</div>
+        <h1>Your catalog,<br><em>beautifully</em> organized.</h1>
+        <p>Discover titles, manage inventory, and keep every book in its place — in a clean workspace built for bookstores and their teams.</p>
+        <div class="lp-actions">
+          <%= link_to books_path, class: "lp-btn-main" do %>
+            &#9783; Browse Collection
+          <% end %>
+          <%= link_to new_book_path, class: "lp-btn-ghost" do %>
+            + Add a Book
+          <% end %>
+        </div>
+        <div class="lp-stats">
+          <div class="lp-stat"><strong>REST API</strong><small>Fully connected</small></div>
+          <div class="lp-stat"><strong>Fast</strong><small>Sub-100ms queries</small></div>
+          <div class="lp-stat"><strong>Clean UI</strong><small>Zero clutter</small></div>
+        </div>
+      </div>
+      <div class="lp-panel">
+        <p class="lp-panel-label">Everything in one place</p>
+        <ul class="lp-checklist">
+          <li><span class="lp-dot"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4.5,7.5 8,3" stroke="#1a3d2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Maintain a neat digital shelf with rich metadata — title, author, pricing, and more.</span></li>
+          <li><span class="lp-dot"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4.5,7.5 8,3" stroke="#1a3d2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Update inventory and pricing in seconds, without digging through menus.</span></li>
+          <li><span class="lp-dot"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4.5,7.5 8,3" stroke="#1a3d2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Connect external tools via a clean, documented REST API.</span></li>
+          <li><span class="lp-dot"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4.5,7.5 8,3" stroke="#1a3d2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Monitor library health, background jobs, and performance in real time.</span></li>
+        </ul>
       </div>
     </div>
+  </section>
 
-    <div class="hero-panel" data-controller="reveal">
-      <h3>What you can do</h3>
-      <ul>
-        <li><i class="fa-solid fa-check"></i> Maintain a neat digital shelf</li>
-        <li><i class="fa-solid fa-check"></i> Manage metadata and pricing in seconds</li>
-        <li><i class="fa-solid fa-check"></i> Connect using a clean REST API</li>
-      </ul>
+  <div class="lp-section-divider"></div>
+
+  <section>
+    <div class="lp-features">
+      <span class="lp-sec-kicker">Capabilities</span>
+      <h2>Everything your team needs</h2>
+      <div class="lp-card-grid">
+        <div class="lp-card">
+          <div class="lp-icon-wrap lp-icon-wrap--green">&#128218;</div>
+          <h3>Extensive Library</h3>
+          <p>Search, browse, and organize your entire catalog in a polished, readable interface.</p>
+          <%= link_to books_path, class: "lp-card-link" do %>
+            View Books &rarr;
+          <% end %>
+        </div>
+        <div class="lp-card">
+          <div class="lp-icon-wrap lp-icon-wrap--sage">&#123;&#125;</div>
+          <h3>Developer API</h3>
+          <p>Integrate your tools with the BookStore API for automation and custom workflows.</p>
+          <%= link_to new_book_path, class: "lp-card-link" do %>
+            API Docs &rarr;
+          <% end %>
+        </div>
+        <div class="lp-card">
+          <div class="lp-icon-wrap lp-icon-wrap--amber">&#9741;</div>
+          <h3>System Dashboard</h3>
+          <p>Track library health, background jobs, and key performance metrics at a glance.</p>
+          <%= link_to dashboard_path, class: "lp-card-link" do %>
+            Open Dashboard &rarr;
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="container landing-features">
-  <div class="section-header">
-    <span class="section-kicker">Capabilities</span>
-    <h2>Everything your team needs</h2>
-  </div>
-  <div class="card-grid">
-    <article class="card feature-card" data-controller="reveal">
-      <i class="fa-solid fa-layer-group fa-2x feature-icon feature-icon-primary"></i>
-      <h3>Extensive Library</h3>
-      <p>Search, browse, and organize your books in a polished and readable interface.</p>
-      <%= link_to "View Books", books_path, class: "feature-link" %>
-    </article>
-
-    <article class="card feature-card" data-controller="reveal">
-      <i class="fa-solid fa-code fa-2x feature-icon feature-icon-accent"></i>
-      <h3>Developer API</h3>
-      <p>Integrate your tools with the BookStore API for automation and custom workflows.</p>
-      <%= link_to "Create Book", new_book_path, class: "feature-link" %>
-    </article>
-
-    <article class="card feature-card" data-controller="reveal">
-      <i class="fa-solid fa-gauge-high fa-2x feature-icon feature-icon-warning"></i>
-      <h3>System Status</h3>
-      <p>Monitor your library's health, background jobs, and performance metrics from the dashboard.</p>
-      <%= link_to "Open Dashboard", dashboard_path, class: "feature-link" %>
-    </article>
-  </div>
-</section>
+  </section>
+</div>
