@@ -1,8 +1,10 @@
 <%= form_with(model: book) do |form| %>
   <% if book.errors.any? %>
-    <div class="book-form-errors">
-      <h2><%= pluralize(book.errors.count, "error") %> prevented this book from being saved:</h2>
-      <ul>
+    <div style="background: #fef2f2; border: 1px solid #fee2e2; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem;">
+      <h2 style="font-size: 14px; font-weight: 600; color: #991b1b; margin-bottom: 0.75rem;">
+        <%= pluralize(book.errors.count, "error") %> prevented this selection from being saved:
+      </h2>
+      <ul style="margin: 0; padding-left: 1.25rem; color: #b91c1c; font-size: 13.5px;">
         <% book.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -10,34 +12,37 @@
     </div>
   <% end %>
 
-  <div class="book-form-grid">
-    <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title, placeholder: "Atomic Habits" %>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+    <div class="lp-form-field" style="grid-column: span 2;">
+      <%= form.label :title, class: "lp-label" %>
+      <%= form.text_field :title, class: "lp-input", placeholder: "e.g. The Great Gatsby" %>
     </div>
 
-    <div class="field">
-      <%= form.label :author %>
-      <%= form.text_field :author, placeholder: "James Clear" %>
+    <div class="lp-form-field">
+      <%= form.label :author, class: "lp-label" %>
+      <%= form.text_field :author, class: "lp-input", placeholder: "e.g. F. Scott Fitzgerald" %>
     </div>
 
-    <div class="field">
-      <%= form.label :price %>
-      <%= form.number_field :price, step: 0.01, min: 0, placeholder: "499.00" %>
+    <div class="lp-form-field">
+      <%= form.label :category_id, "Category", class: "lp-label" %>
+      <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Select a Category" }, { class: "lp-select", disabled: @categories.empty? } %>
     </div>
 
-    <div class="field">
-      <%= form.label :category_id, "Category" %>
-      <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Select a Category" }, { class: "book-select", disabled: @categories.empty? } %>
+    <div class="lp-form-field">
+      <%= form.label :price, class: "lp-label" %>
+      <div style="position: relative;">
+        <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--lp-text-3);">₹</span>
+        <%= form.number_field :price, step: 0.01, min: 0, class: "lp-input", style: "padding-left: 28px;", placeholder: "0.00" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= form.label :published_on %>
-      <%= form.date_field :published_on %>
+    <div class="lp-form-field">
+      <%= form.label :published_on, class: "lp-label" %>
+      <%= form.date_field :published_on, class: "lp-input" %>
     </div>
   </div>
 
-  <div class="book-form-actions">
-    <%= form.submit "Save Book", class: "btn btn-primary" %>
+  <div style="margin-top: 2rem; border-top: 1px solid var(--lp-border-soft); padding-top: 2rem;">
+    <%= form.submit "Confirm and Save", class: "lp-btn-main", style: "width: 100%; justify-content: center;" %>
   </div>
 <% end %>

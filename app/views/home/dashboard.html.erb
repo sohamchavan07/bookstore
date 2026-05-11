@@ -1,50 +1,101 @@
-<section class="hero hero-home">
-  <div class="container hero-layout">
-    <div class="hero-copy">
-      <span class="hero-kicker">Overview</span>
-      <h1>Dashboard</h1>
-      <p>Track your catalog at a glance and jump to the most common actions.</p>
+<div class="lp-wrap">
+  <section>
+    <div class="lp-hero">
+      <div>
+        <div class="lp-kicker">Administrative Console</div>
+        <h1>Your Dashboard,<br><em>overview</em> of library.</h1>
+        <p>Monitor your collection's growth, manage recent additions, and keep track of system performance in one centralized workspace.</p>
+        <div class="lp-actions">
+          <%= link_to books_path, class: "lp-btn-main" do %>
+            &#9783; Browse Collection
+          <% end %>
+          <%= link_to new_book_path, class: "lp-btn-ghost" do %>
+            + Add New Book
+          <% end %>
+        </div>
+        <div class="lp-stats">
+          <div class="lp-stat">
+            <strong><%= @book_count %></strong>
+            <small>Total Catalog</small>
+          </div>
+          <div class="lp-stat">
+            <strong>Active</strong>
+            <small>System Health</small>
+          </div>
+          <div class="lp-stat">
+            <strong>Ready</strong>
+            <small>API v1.0</small>
+          </div>
+        </div>
+      </div>
+      <div class="lp-panel">
+        <p class="lp-panel-label">Library Snapshot</p>
+        <ul class="lp-checklist">
+          <li>
+            <span class="lp-dot">
+              <svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4.5,7.5 8,3" stroke="#1a3d2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span>Database contains <strong><%= @book_count %></strong> curated records.</span>
+          </li>
+          <li>
+            <span class="lp-dot">
+              <svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4.5,7.5 8,3" stroke="#1a3d2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span>API endpoint <code>/api/v1/books</code> is fully operational.</span>
+          </li>
+          <li>
+            <span class="lp-dot">
+              <svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4.5,7.5 8,3" stroke="#1a3d2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span>Background jobs via <strong>Solid Queue</strong> are processing.</span>
+          </li>
+          <li>
+            <span class="lp-dot">
+              <svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4.5,7.5 8,3" stroke="#1a3d2b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span>Optimal performance with zero latency detected.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      <div class="hero-actions">
-        <%= link_to books_path, class: "btn btn-primary" do %>
-          <i class="fa-solid fa-book"></i> Browse Collection
-        <% end %>
+  <div class="lp-section-divider"></div>
 
-        <%= link_to new_book_path, class: "btn btn-outline" do %>
-          <i class="fa-solid fa-plus"></i> Add Book
+  <section>
+    <div class="lp-features">
+      <span class="lp-sec-kicker">Updates</span>
+      <h2>Recently Added Books</h2>
+      <div class="lp-card-grid">
+        <% if @latest_books.any? %>
+          <% @latest_books.each do |book| %>
+            <div class="lp-card">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+                <div class="lp-icon-wrap lp-icon-wrap--green">&#128214;</div>
+                <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--lp-sage); background: rgba(74,124,95,.08); padding: 2px 6px; border-radius: 10px; white-space: nowrap;"><%= book.category.name %></span>
+              </div>
+              <h3 style="margin-top: 5px;"><%= book.title %></h3>
+              <p style="font-size: 13px;">by <strong><%= book.author %></strong></p>
+              
+              <div style="margin-top: auto; border-top: 1px solid var(--lp-border-soft); padding-top: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                 <span style="font-family: 'Cormorant Garamond', serif; font-weight: 600; color: var(--lp-text-1);">₹<%= number_with_precision(book.price, precision: 2) %></span>
+                 <%= link_to book_path(book), class: "lp-card-link" do %>
+                   Details &rarr;
+                 <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="lp-card" style="grid-column: span 3; text-align: center; padding: 3rem;">
+            <div class="lp-icon-wrap lp-icon-wrap--amber" style="margin: 0 auto 1rem;">∅</div>
+            <h3>No books in collection</h3>
+            <p>Ready to start? Begin by adding your first book to the library.</p>
+            <%= link_to new_book_path, class: "lp-btn-main", style: "align-self: center; margin-top: 1rem;" do %>
+              + Add First Book
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
-
-    <div class="hero-panel">
-      <h3>Library Snapshot</h3>
-      <ul>
-        <li><i class="fa-solid fa-check"></i> Total books: <strong><%= @book_count %></strong></li>
-        <li><i class="fa-solid fa-check"></i> API endpoint: <code>/api/v1/books</code></li>
-        <li><i class="fa-solid fa-check"></i> Background Jobs: <strong>Active (Solid Queue)</strong></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="container landing-features">
-  <h2>Recently Added</h2>
-
-  <% if @latest_books.any? %>
-    <div class="card-grid">
-      <% @latest_books.each do |book| %>
-        <article class="card feature-card">
-          <h3><%= book.title %></h3>
-          <p><strong>Author:</strong> <%= book.author %></p>
-          <%= link_to "View Details", book_path(book), class: "feature-link" %>
-        </article>
-      <% end %>
-    </div>
-  <% else %>
-    <article class="card feature-card">
-      <h3>No books yet</h3>
-      <p>Your dashboard is ready. Add your first book to get started.</p>
-      <%= link_to "Add Book", new_book_path, class: "feature-link" %>
-    </article>
-  <% end %>
-</section>
+  </section>
+</div>

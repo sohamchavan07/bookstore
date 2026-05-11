@@ -9,7 +9,7 @@ class HomeController < ApplicationController
 
   def dashboard
     @book_count = Book.count
-    @latest_books = Book.order(created_at: :desc).limit(5)
+    @latest_books = Book.includes(:category).order(created_at: :desc).limit(6)
   end
 
   def sidekiq_unavailable

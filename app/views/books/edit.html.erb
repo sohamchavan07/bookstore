@@ -1,22 +1,22 @@
-<% content_for :title, "Edit book" %>
-
-<section class="book-form-shell">
-  <div class="book-form-card">
-    <div class="book-form-header">
-      <span class="book-form-badge">Edit mode</span>
-      <h1>Update "<%= @book.title %>"</h1>
-      <p>Refine metadata, pricing, and publication details without losing history.</p>
+<div class="lp-wrap">
+  <section class="lp-section" style="max-width: 650px;">
+    <div style="margin-bottom: 3rem;">
+      <span class="lp-kicker">Modification Request</span>
+      <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin: 0.5rem 0;">Update selection</h1>
+      <p style="color: var(--lp-text-2); font-size: 15px;">Refine metadata, pricing, and publication details for <em>"<%= @book.title %>"</em>.</p>
     </div>
 
-    <%= render "form", book: @book %>
+    <div class="lp-panel">
+      <%= render "form", book: @book %>
+    </div>
 
-    <div class="book-form-footer">
-      <%= link_to @book, class: "btn btn-outline" do %>
-        <i class="fa-regular fa-eye"></i> View Book
+    <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+      <%= link_to @book, class: "lp-btn-ghost" do %>
+        View current record
       <% end %>
-      <%= link_to books_path, class: "btn btn-ghost" do %>
-        <i class="fa-solid fa-arrow-left"></i> Back to Books
+      <%= link_to books_path, class: "lp-btn-ghost" do %>
+        &larr; Cancel and return
       <% end %>
     </div>
-  </div>
-</section>
+  </section>
+</div>

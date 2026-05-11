@@ -1,33 +1,51 @@
-<section class="container book-detail-shell">
-  <article class="book-detail-card">
-    <header class="book-detail-header">
+<div class="lp-wrap">
+  <section class="lp-section">
+    <header class="lp-detail-header">
       <div>
-        <span class="section-kicker">Book details</span>
+        <span class="lp-sec-kicker">Curated Title</span>
         <h1><%= @book.title %></h1>
       </div>
-      <span class="book-price">₹<%= number_with_precision(@book.price, precision: 2) %></span>
+      <div class="lp-detail-price">
+        ₹<%= number_with_precision(@book.price, precision: 2) %>
+      </div>
     </header>
 
-    <div class="book-detail-layout">
-      <aside class="book-detail-meta">
-        <p><i class="fa-solid fa-user-pen"></i> <%= @book.author %></p>
-        <p><i class="fa-regular fa-calendar"></i> <%= @book.published_on || "Not set" %></p>
-        <p><i class="fa-solid fa-tag"></i> <%= @book.category.try(:name) || "Uncategorized" %></p>
-      </aside>
-
-      <div class="book-detail-body">
-        <h4>Description</h4>
-        <p><%= @book.formatted_details.presence || "No additional description provided yet." %></p>
+    <div class="lp-meta-grid">
+      <div class="lp-meta-item">
+        <span class="lp-meta-label">Author</span>
+        <span class="lp-meta-value"><%= @book.author %></span>
+      </div>
+      <div class="lp-meta-item">
+        <span class="lp-meta-label">Category</span>
+        <span class="lp-meta-value"><%= @book.category.try(:name) || "Uncategorized" %></span>
+      </div>
+      <div class="lp-meta-item">
+        <span class="lp-meta-label">Published</span>
+        <span class="lp-meta-value"><%= @book.published_on&.strftime("%B %d, %Y") || "Release Pending" %></span>
+      </div>
+      <div class="lp-meta-item">
+        <span class="lp-meta-label">Library ID</span>
+        <span class="lp-meta-value">#<%= @book.id.to_s.rjust(4, '0') %></span>
       </div>
     </div>
 
-    <div class="book-detail-actions">
-      <%= link_to edit_book_path(@book), class: "btn btn-primary" do %>
-        <i class="fa-solid fa-pen"></i> Edit
+    <div class="lp-description">
+      <h4>Brief Overview</h4>
+      <p>
+        <%= @book.formatted_details.presence || "No additional description provided yet for this selection." %>
+      </p>
+    </div>
+
+    <div class="lp-actions" style="border-top: 1px solid var(--lp-border-soft); padding-top: 2rem;">
+      <%= link_to edit_book_path(@book), class: "lp-btn-main" do %>
+        &#9998; Edit Details
       <% end %>
-      <%= link_to books_path, class: "btn btn-outline" do %>
-        <i class="fa-solid fa-arrow-left"></i> Back to Collection
+      <%= link_to books_path, class: "lp-btn-ghost" do %>
+        &larr; Back to Collection
+      <% end %>
+      <%= button_to @book, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "lp-btn-ghost", style: "color: #b91c1c; border-color: rgba(185,28,28,.2);" do %>
+        &#128465; Delete
       <% end %>
     </div>
-  </article>
-</section>
+  </section>
+</div>
