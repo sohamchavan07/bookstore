@@ -123,7 +123,7 @@ docker run -p 80:80 -e RAILS_MASTER_KEY=<your_key> bookstore
 
 | Page / Feature | Preview |
 |----------------|---------|
-| Catalog Search | ![Search Feature](/home/soham/soham_workspace/bookstore/app/assets/screenshots/Screenshot from 2026-08-04 22-52-06.png) |
+| Catalog Search | ![App Screenshot](app/assets/screenshots/Screenshot from 2026-08-04 22-50-10.png)
 | Authentication | ![Auth Feature](app/assets/screenshots/Screenshot from 2026-08-04 22-50-10.png) |
 
 > *Add actual screenshots to the `/screenshots` folder in the repo root.*
