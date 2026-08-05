@@ -5,7 +5,10 @@ default: &default
 
 development:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= nil %>  # explicitly blank so it can't fall back to ENV DATABASE_URL
+  host: <%= ENV.fetch("DEV_DB_HOST", "localhost") %>
+  username: <%= ENV.fetch("DEV_DB_USERNAME", "postgres") %>
+  password: <%= ENV.fetch("DEV_DB_PASSWORD", "password") %>
 
 test:
   <<: *default
@@ -14,16 +17,20 @@ test:
 production:
   primary:
     <<: *default
-    url: <%= ENV["DATABASE_URL"]&.include?("@dpg-") && !ENV["DATABASE_URL"].include?(".") ? ENV["DATABASE_URL"].sub("@dpg-", "@dpg-").sub(/\/[^\/]+$/, ".oregon-postgres.render.com" + ENV["DATABASE_URL"][/\/[^\/]+$/]) : ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] || ENV["PROD_DATABASE_URL"] %>
+    sslmode: require
   cache:
     <<: *default
-    url: <%= ENV["DATABASE_URL"]&.include?("@dpg-") && !ENV["DATABASE_URL"].include?(".") ? ENV["DATABASE_URL"].sub("@dpg-", "@dpg-").sub(/\/[^\/]+$/, ".oregon-postgres.render.com" + ENV["DATABASE_URL"][/\/[^\/]+$/]) : ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] || ENV["PROD_DATABASE_URL"] %>
+    sslmode: require
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    url: <%= ENV["DATABASE_URL"]&.include?("@dpg-") && !ENV["DATABASE_URL"].include?(".") ? ENV["DATABASE_URL"].sub("@dpg-", "@dpg-").sub(/\/[^\/]+$/, ".oregon-postgres.render.com" + ENV["DATABASE_URL"][/\/[^\/]+$/]) : ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] || ENV["PROD_DATABASE_URL"] %>
+    sslmode: require
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    url: <%= ENV["DATABASE_URL"]&.include?("@dpg-") && !ENV["DATABASE_URL"].include?(".") ? ENV["DATABASE_URL"].sub("@dpg-", "@dpg-").sub(/\/[^\/]+$/, ".oregon-postgres.render.com" + ENV["DATABASE_URL"][/\/[^\/]+$/]) : ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL"] || ENV["PROD_DATABASE_URL"] %>
+    sslmode: require
     migrations_paths: db/cable_migrate

@@ -13,6 +13,7 @@
 ActiveRecord::Schema[8.0].define(version: 2026_04_24_205619) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "vector"
 
   create_table "books", force: :cascade do |t|
     t.string "title"
@@ -21,7 +22,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_24_205619) do
     t.date "published_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id", null: false
+    t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_books_on_category_id"
   end
 
