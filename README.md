@@ -123,10 +123,9 @@ docker run -p 80:80 -e RAILS_MASTER_KEY=<your_key> bookstore
 
 | Page / Feature | Preview |
 |----------------|---------|
-| Catalog Search |![App Screenshot](<app/assets/screenshots/Screenshot from 2026-08-04 22-50-10.png>)
-| Authentication | ![Auth Feature](app/assets/screenshots/Screenshot from 2026-08-04 22-50-10.png) |
-
-> *Add actual screenshots to the `/screenshots` folder in the repo root.*
+|  Home Page     |![Home Page](<app/assets/screenshots/Screenshot from 2026-08-04 22-50-10.png>)
+| Authentication | ![Auth Feature](<app/assets/screenshots/Screenshot from 2026-08-04 22-51-11.png> ) |
+| Catalog Search | ! [Catalog Search] ( <app/assets/screenshots/Screenshot from 2026-08-05 13-51-55.png> ) |
 
 ---
 
