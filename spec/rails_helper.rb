@@ -28,6 +28,7 @@ require 'rspec/rails'
 #
 # Rails.root.glob('spec/support/**/*.rb').sort_by(&:to_s).each { |f| require f }
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
+require 'timecop'
 
 # Ensures that the test database schema matches the current schema file.
 # If there are pending migrations it will invoke `db:test:prepare` to
@@ -75,4 +76,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
   config.include AuthHelper, type: :request
+  # Ensure Timecop is reset after each example to avoid leaking frozen time
+  config.after(:each) { Timecop.return }
 end

@@ -14,15 +14,15 @@
 
     <div class="lp-stats" style="margin-bottom: 3rem; border: none; padding-top: 0;">
       <div class="lp-stat" style="border-right: 1px solid var(--lp-border-soft); border-left: none; padding-left: 0;">
-        <strong><%= @books.count %></strong>
+        <strong><%= @catalog_summary[:total_books] %></strong>
         <small>Total Books</small>
       </div>
       <div class="lp-stat" style="border-right: 1px solid var(--lp-border-soft); border-left: none;">
-        <strong><%= @books.maximum(:published_on)&.year || "N/A" %></strong>
+        <strong><%= @catalog_summary[:latest_release_year] || "N/A" %></strong>
         <small>Latest Release</small>
       </div>
       <div class="lp-stat" style="border-right: 1px solid var(--lp-border-soft); border-left: none;">
-        <strong><%= Category.count %></strong>
+        <strong><%= @catalog_summary[:total_categories] %></strong>
         <small>Categories</small>
       </div>
       <div class="lp-stat" style="border-left: none;">

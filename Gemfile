@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+# Pin Rails to a maintained patch release. Monitor Rails EOL notices and
+# update to the latest patch release promptly. (EOL for 8.0.2.1: 2026-10-07)
 gem 'rails', '~> 8.0.2'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem 'propshaft'
@@ -72,6 +74,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  # Freeze time in tests to avoid flakiness around time-sensitive code
+  gem 'timecop'
 end
 
 gem 'tailwindcss-rails', '~> 4.4'

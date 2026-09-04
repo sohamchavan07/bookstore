@@ -10,6 +10,7 @@ class BooksController < ApplicationController
     result  = Books::SearchBooksService.call(query: params[:query], category_id: params[:category_id])
     @books  = result.payload
     @categories = Category.order(:name)
+    @catalog_summary = Books::CatalogSummaryService.call(scope: @books).payload
   end
 
   # GET /books/1

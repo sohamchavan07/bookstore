@@ -1,0 +1,95 @@
+/* Devise auth build asset (mirrors app/assets/stylesheets/devise_auth.css)
+   Placed in app/assets/builds so Propshaft can find it directly. */
+
+.lfp-shell-wrap, .lsu-shell-wrap, .session-shell { background: #f5f1ea; }
+
+/* Passwords: lfp- styles */
+.lfp-shell-wrap { min-height: calc(100vh - 220px); display:flex; align-items:center; justify-content:center; padding:2rem 1rem; font-family: "DM Sans", sans-serif; }
+.lfp-shell { width:100%; max-width:460px; }
+.lfp-wordmark{display:flex;align-items:center;gap:10px;margin-bottom:2rem;justify-content:center}
+.lfp-wordmark-icon{width:32px;height:32px;background:#1a3d2b;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.lfp-wordmark-name{font-family:"Cormorant Garamond",serif;font-size:18px;font-weight:600;color:#1a1a18;letter-spacing:.02em}
+.lfp-card{background:#fff;border-radius:16px;border:1px solid #e8e2d8;padding:2.5rem 2.5rem 2rem;box-shadow:0 1px 3px rgba(26,20,10,.06),0 8px 32px rgba(26,20,10,.06)}
+.lfp-icon-wrap{width:52px;height:52px;background:#f0f7f3;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem}
+.lfp-auth-header h1{font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:600;color:#1a1a18;line-height:1.1;margin-bottom:6px}
+.lfp-auth-header p{font-size:14px;color:#7a7368;font-weight:300;line-height:1.55}
+.lfp-error-box{background:#fef2f0;border:1px solid #f9cfc9;border-radius:8px;padding:12px 14px;margin-bottom:1.5rem;font-size:13px;color:#b04030}
+.lfp-field{margin-bottom:1.5rem}
+.lfp-field label{display:block;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:#4a4640;margin-bottom:8px}
+.lfp-field input[type="email"]{width:100%;height:44px;border:1.5px solid #ddd9d0;border-radius:8px;padding:0 14px;font-size:14px;font-family:"DM Sans",sans-serif;color:#1a1a18;background:#faf8f5;transition:border-color .15s, background .15s, box-shadow .15s;outline:none}
+.lfp-field input[type="email"]:focus{border-color:#1a3d2b;background:#fff;box-shadow:0 0 0 3px rgba(26,61,43,.08)}
+.lfp-field input::placeholder{color:#b8b3ac}
+.lfp-submit-btn{width:100%;height:46px;background:#1a3d2b;color:#fff;border:none;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:14px;font-weight:500;letter-spacing:.02em;cursor:pointer;transition:background .15s, transform .1s;margin-bottom:1.75rem}
+.lfp-submit-btn:hover{background:#163325}
+.lfp-back-row{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:#7a7368}
+.lfp-back-row a{color:#1a3d2b;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:5px}
+
+/* Registrations: lsu- styles */
+.lsu-shell-wrap{min-height:calc(100vh - 220px);display:flex;align-items:center;justify-content:center;padding:2rem 1rem;font-family:"DM Sans",sans-serif}
+.lsu-shell{width:100%;max-width:460px}
+.lsu-wordmark{display:flex;align-items:center;gap:10px;margin-bottom:2rem;justify-content:center}
+.lsu-wordmark-icon{width:32px;height:32px;background:#1a3d2b;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.lsu-wordmark-name{font-family:"Cormorant Garamond",serif;font-size:18px;font-weight:600;color:#1a1a18;letter-spacing:.02em}
+.lsu-card{background:#fff;border-radius:16px;border:1px solid #e8e2d8;padding:2.5rem 2.5rem 2rem;box-shadow:0 1px 3px rgba(26,20,10,.06),0 8px 32px rgba(26,20,10,.06)}
+.lsu-auth-header h1{font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:600;color:#1a1a18;line-height:1.1;margin-bottom:6px}
+.lsu-error-box{background:#fef2f0;border:1px solid #f9cfc9;border-radius:8px;padding:12px 14px;margin-bottom:1.5rem;font-size:13px;color:#b04030}
+.lsu-field{margin-bottom:1.25rem}
+.lsu-field label{display:block;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:#4a4640;margin-bottom:8px}
+.lsu-field input[type="email"], .lsu-field input[type="password"], .lsu-field input[type="text"]{width:100%;height:44px;border:1.5px solid #ddd9d0;border-radius:8px;padding:0 14px;font-size:14px;font-family:"DM Sans",sans-serif;color:#1a1a18;background:#faf8f5;transition:border-color .15s, background .15s, box-shadow .15s;outline:none}
+.lsu-password-wrap{position:relative}
+.lsu-eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:22px;height:22px;border:none;background:transparent;color:#7a7368;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.lsu-eye-off{display:none}
+.lsu-eye-btn.lsu-showing .lsu-eye-on{display:none}
+.lsu-eye-btn.lsu-showing .lsu-eye-off{display:block}
+.lsu-strength-row{display:flex;gap:4px;margin-top:8px}
+.lsu-strength-bar{flex:1;height:3px;border-radius:99px;background:#e8e2d8;transition:background .2s}
+.lsu-strength-bar.lsu-active{background:#1a3d2b}
+.lsu-submit-btn{width:100%;height:46px;background:#1a3d2b;color:#fff;border:none;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:14px;font-weight:500;letter-spacing:.02em;cursor:pointer;transition:background .15s, transform .1s;margin-bottom:1rem}
+
+/* Google button shared styles */
+.lsu-google-btn,
+.google-btn {
+   width: 100%;
+   height: 44px;
+   background: #fff;
+   border: 1.5px solid #ddd9d0;
+   border-radius: 8px;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: 10px;
+   padding: 0 12px;
+   font-family: "DM Sans", sans-serif;
+   font-size: 14px;
+   color: #2a2722;
+   cursor: pointer;
+   text-decoration: none;
+   transition: border-color .15s, background .15s, box-shadow .15s;
+   margin-bottom: 1.75rem;
+}
+
+.lsu-google-btn:hover,
+.google-btn:hover {
+   border-color: #bbb5ac;
+   background: #faf8f5;
+   box-shadow: 0 1px 4px rgba(0, 0, 0, .06);
+}
+
+.lsu-google-btn svg, .google-btn svg { width: 18px; height: 18px; display: block; }
+.lsu-google-btn .google-label, .google-btn .google-label { display: inline-block; vertical-align: middle; }
+
+/* Sessions: session- styles */
+.session-shell{width:100%;min-height:calc(100vh - 220px);display:flex;align-items:center;justify-content:center;padding:2rem 1rem;background:#f5f1ea;font-family:"DM Sans",sans-serif}
+.session-shell .shell{width:100%;max-width:460px}
+.session-shell .wordmark{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;justify-content:center}
+.session-shell .card{background:#fff;border-radius:16px;border:1px solid #e8e2d8;padding:2.5rem 2.5rem 2rem;box-shadow:0 1px 3px rgba(26,20,10,0.06),0 8px 32px rgba(26,20,10,0.06)}
+.session-shell .auth-header h1{font-family:"Cormorant Garamond",serif;font-size:32px;font-weight:600;color:#1a1a18;line-height:1.1;margin-bottom:6px}
+.session-shell .field{margin-bottom:1.25rem}
+.session-password-wrap{position:relative}
+.session-eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:22px;height:22px;border:none;background:transparent;color:#7a7368;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.session-eye-off{display:none}
+.session-eye-btn.session-showing .session-eye-on{display:none}
+.session-eye-btn.session-showing .session-eye-off{display:block}
+
+/* Shared small utilities */
+.lp-logo{font-weight:700}

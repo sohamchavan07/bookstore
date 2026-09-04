@@ -2,13 +2,13 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "./application.js"
 
-import NavbarController from "./navbar_controller"
+import NavbarController from "./navbar_controller.js"
 application.register("navbar", NavbarController)
 
-import RevealController from "./reveal_controller"
+import RevealController from "./reveal_controller.js"
 application.register("reveal", RevealController)
 
-import SupabaseAuthController from "./supabase_auth_controller"
+import SupabaseAuthController from "./supabase_auth_controller.js"
 application.register("supabase-auth", SupabaseAuthController)

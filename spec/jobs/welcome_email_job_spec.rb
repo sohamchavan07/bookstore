@@ -5,6 +5,11 @@ require 'rails_helper'
 RSpec.describe WelcomeEmailJob, type: :job do
   let(:user) { create(:user) }
 
+  # Freeze time for job-related assertions to avoid flakiness
+  around(:each) do |example|
+    Timecop.freeze(example.metadata[:freeze] || Time.current) { example.run }
+  end
+
   it 'sends a welcome email' do
     expect {
       WelcomeEmailJob.perform_now(user.id)

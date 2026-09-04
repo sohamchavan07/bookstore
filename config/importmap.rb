@@ -1,10 +1,12 @@
 # Pin npm packages by running ./bin/importmap
 
 pin "application"
+pin "google_analytics", to: "google_analytics.js"
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
 pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
+pin "devise_auth", to: "devise_auth.js"
 
 # Supabase
 pin "@supabase/supabase-js", to: "https://ga.jspm.io/npm:@supabase/supabase-js@2.39.7/dist/module/index.js"

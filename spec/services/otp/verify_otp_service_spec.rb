@@ -10,10 +10,16 @@ RSpec.describe Otp::VerifyOtpService do
   before do
     user.update!(otp_code: '123456', otp_sent_at: Time.current)
   end
+  # Freeze time for OTP expiry-sensitive specs to avoid flakiness
+  around(:each) do |example|
+    Timecop.freeze(example.metadata[:freeze] || Time.current) { example.run }
+  end
 
   context 'with a valid, unexpired OTP' do
     let(:email) { user.email }
     let(:code)  { '123456' }
+
+    it_behaves_like 'service object contract'
 
     it 'returns a successful result' do
       expect(result.success?).to be true
@@ -34,9 +40,7 @@ RSpec.describe Otp::VerifyOtpService do
     let(:email) { user.email }
     let(:code)  { '000000' }
 
-    it 'returns a failure result' do
-      expect(result.failure?).to be true
-    end
+    include_examples 'service failure contract'
 
     it 'returns an appropriate error message' do
       expect(result.error).to eq('Invalid or expired OTP.')
@@ -54,9 +58,7 @@ RSpec.describe Otp::VerifyOtpService do
 
     before { user.update!(otp_sent_at: 11.minutes.ago) }
 
-    it 'returns a failure result' do
-      expect(result.failure?).to be true
-    end
+    include_examples 'service failure contract'
 
     it 'returns an appropriate error message' do
       expect(result.error).to eq('Invalid or expired OTP.')
@@ -67,9 +69,18 @@ RSpec.describe Otp::VerifyOtpService do
     let(:email) { 'ghost@example.com' }
     let(:code)  { '123456' }
 
-    it 'returns a failure result' do
-      expect(result.failure?).to be true
+    include_examples 'service failure contract'
+
+    it 'returns an appropriate error message' do
+      expect(result.error).to eq('Invalid or expired OTP.')
     end
+  end
+
+  context 'with a nil OTP code' do
+    let(:email) { user.email }
+    let(:code)  { nil }
+
+    include_examples 'service failure contract'
 
     it 'returns an appropriate error message' do
       expect(result.error).to eq('Invalid or expired OTP.')

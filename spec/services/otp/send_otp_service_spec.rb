@@ -5,6 +5,11 @@ require 'rails_helper'
 RSpec.describe Otp::SendOtpService do
   subject(:result) { described_class.call(email: email) }
 
+  # Freeze time for OTP send-time assertions to avoid flakiness
+  around(:each) do |example|
+    Timecop.freeze(example.metadata[:freeze] || Time.current) { example.run }
+  end
+
   context 'when the email belongs to an existing user' do
     let!(:user) { create(:user) }
     let(:email) { user.email }
@@ -14,8 +19,9 @@ RSpec.describe Otp::SendOtpService do
       mailer_double = instance_double(ActionMailer::MessageDelivery, deliver_now: true)
       allow(OtpMailer).to receive(:send_otp).and_return(mailer_double)
     end
+      it_behaves_like 'service object contract'
 
-    it 'returns a successful result' do
+      it 'returns a successful result' do
       expect(result.success?).to be true
     end
 
@@ -42,9 +48,8 @@ RSpec.describe Otp::SendOtpService do
   context 'when no user exists with that email' do
     let(:email) { 'nobody@example.com' }
 
-    it 'returns a failure result' do
-      expect(result.failure?).to be true
-    end
+
+    include_examples 'service failure contract'
 
     it 'returns an appropriate error message' do
       expect(result.error).to eq('Email not found.')

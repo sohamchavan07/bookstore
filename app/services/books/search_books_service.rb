@@ -23,7 +23,7 @@ module Books
     end
 
     def call
-      books = Book.all
+      books = Book.all.includes(:category)
       books = books.search_by_term(@query)       if @query.present?
       books = books.by_category(@category_id)    if @category_id.present?
 
